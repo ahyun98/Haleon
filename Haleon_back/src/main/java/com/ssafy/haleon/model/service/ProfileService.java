@@ -11,6 +11,7 @@ public interface ProfileService {
 	void deleteProfile(String id);
 	Profile selectOne(String id);
 	
+	//test
 	//필요할까..?
 	List<Profile> selectList(HashMap<String, String> params);
 }
