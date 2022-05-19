@@ -10,8 +10,5 @@ public interface ProfileDao {
 	void insertProfile(Profile profile);
 	void deleteProfile(String id);
 	Profile selectOne(String id);
-	
-	//프로필 리스트가 필요한가??
-	List<Profile> selectList(HashMap<String, String> params);
 }
  

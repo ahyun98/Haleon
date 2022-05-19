@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.ssafy.haleon.model.dao.ProfileDao">
+	<resultMap type="profile" id="profileMap">
+		<id column="id" property="id"></id>
+		<result column="period" property="period" />
+		<result column="height" property="height" />
+		<result column="bmi" property="bmi" />
+		<result column="weight" property="weight" />
+	</resultMap>
+
+	<insert id="insertProfile" parameterType="profile">
+		INSERT INTO profile VALUES (0, #{period}, #{height}, #{bmi}, #{weight})
+	</insert>	
+
+	<update id="updateProfile" parameterType="profile">
+		UPDATE profile 
+		SET
+		period = #{period},
+		height = #{height},
+		bmi = #{bmi},
+		weight = #{weight}
+		WHERE id = #{id}
+	</update>
+	
+	<select id="selectOne" resultMap="profileMap" parameterType="String">
+		SELECT id, period, height, bmi, weight FROM profile WHERE id = #{id}
+	</select>
+</mapper>

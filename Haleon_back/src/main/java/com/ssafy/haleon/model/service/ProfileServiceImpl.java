@@ -30,11 +30,4 @@ public class ProfileServiceImpl implements ProfileService {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-	@Override
-	public List<Profile> selectList(HashMap<String, String> params) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }
