@@ -1,14 +1,23 @@
 <template>
   <div id="app">
-    <nav>
-    </nav>
+    <header-nav></header-nav>
     <router-view/>
+    <footer-comp></footer-comp>
   </div>
 </template>
 
-<style>
-#app{
-  margin: 0%;
-  padding: 0%;
+<script>
+import HeaderNav from '@/components/common/Header.vue'
+import FooterComp from '@/components/common/Footer.vue'
+export default {
+  components: {
+    HeaderNav,
+    FooterComp,
+    
+  }
 }
+</script>
+
+<style>
+
 </style>

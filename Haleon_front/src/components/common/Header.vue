@@ -1,54 +1,67 @@
 <template>
-  <header>
-      <div>
-        <div class = "logo">Heleon</div>
-        <nav>
-          <div class="container">
-              <ul>
-                  <li><a href ="#">Home</a></li>
-                  <li><a to ="#">About</a></li>
-                  <li><a to ="#">Videos</a></li>
-                  <li><a to ="#">Ranking</a></li>
-                  <li><a to ="#">Board</a></li>
-                  <li><a to ="#">GYM</a></li>
-                  <li><a to ="#">Work-out</a></li>
-              </ul>
-              <a to="/login">Login</a>
-          </div>
-        </nav>
-      </div>
-  </header>
+  <div>
+    <b-navbar toggleable="lg" type = "dark" style="background-color : #131513; height : 8vh;">
+      <b-navbar-brand to="/" style="font-size : 30px; color :#7DE2D1; margin-top : 22px;">Haleon</b-navbar-brand>
+
+      <b-navbar-toggle target="nav-collapse" ></b-navbar-toggle>
+
+      <b-collapse id="nav-collapse" is-nav>
+        <b-navbar-nav style="margin-top : 30px;" >
+          <b-nav-item to="/about">About</b-nav-item>
+          <b-nav-item to="/videos">Videos</b-nav-item>
+          <b-nav-item href="/ranking">Ranking</b-nav-item>
+          <b-nav-item href="/board">Board</b-nav-item>
+          <b-nav-item href="/gym">GYM</b-nav-item>
+          <b-nav-item href="/wordout">Work-out</b-nav-item>
+        </b-navbar-nav>
+
+        <!-- Right aligned nav items -->
+        <b-navbar-nav class="ml-auto">
+          <b-navbar-nav style="margin-top : 30px">
+            <b-nav-item href="/login">Log In</b-nav-item>
+          </b-navbar-nav>
+        </b-navbar-nav>
+      </b-collapse>
+    </b-navbar>
+  </div>
 </template>
 
 <script>
 export default {
-  name: "HeaderView"
+  name: "HeaderView",
+  data(){
+    return{
+      isclick:false
+    }
+  },
+  methods: {
+    click(){
+      this.isclick = !this.isclick
+    }
+  }
 };
 </script>
 
 <style scoped>
-#{
-    
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144&display=swap');
+*{
+  font-family: 'Roboto Flex', sans-serif;
 }
-header{
-    background-color: #131515;
-    height : 100px;
-    
+hay{
+  vertical-align: bottom;
+  color: white;
 }
-
-.logo{
-    text-align: end;
-    text-shadow: -1px 0 rgb(110, 104, 104), 0 1px rgb(110, 104, 104), 1px 0 rgb(110, 104, 104), 0 -1px rgb(110, 104, 104);
-    color: #7DE2D1;
-    font-size: 35px;
-    margin-right: 30px;
+.nav-link{
+  color: white !important;
 }
 
-li{
-    color:white
+.nav-link:hover{
+  color:#7DE2D1 !important; 
 }
 
-.container{
-    justify-content: space-between;
+.click{
+  color:#7DE2D1 !important;
 }
+
+
 </style>
