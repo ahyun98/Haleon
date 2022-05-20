@@ -20,4 +20,6 @@ public interface CommunityBoardService {
 		CommunityBoard readBoard(int id);
 		//카테고리별 모든 게시물 조회
 		List<CommunityBoard> getBoardList(HashMap<String, String> params);
+		//카테고리별 모든 게시물 등록일자 내림차순 조회
+		List<CommunityBoard> getBoardListDesc(HashMap<String, String> params);
 }

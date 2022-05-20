@@ -59,4 +59,9 @@ public class CommunityBoardServiceImpl implements CommunityBoardService {
 		return communityBoardDao.selectList(params);
 	}
 
+	@Override
+	public List<CommunityBoard> getBoardListDesc(HashMap<String, String> params) {
+		return communityBoardDao.selectListDESC(params);
+	}
+
 }

@@ -50,4 +50,16 @@
 			OR content LIKE '%${keyword}%')
 			AND category = #{category}
 	</select>
+	
+	<select id="selectListDESC" resultMap="boardMap"
+		parameterType="java.util.HashMap">
+		SELECT num, title, writer, content, view_cnt,
+		date_format(reg_date, '%Y-%m-%d %H:%i:%s') as reg_date,
+		category
+		FROM CommunityBoard
+		WHERE (title LIKE CONCAT('%', #{keyword}, '%')
+			OR content LIKE '%${keyword}%')
+			AND category = #{category}
+		ORDER BY reg_date DESC
+	</select>
 </mapper>
