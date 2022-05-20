@@ -10,7 +10,7 @@ public interface ProfileDao {
 	void insertProfile(Profile profile);
 	void deleteProfile(String id);
 	Profile selectOne(String id);
-	List<Profile> routineSelectList(HashMap<String, String> params);
+	List<Profile> profileSelectList(HashMap<String, String> params);
 
 }
  
