@@ -6,11 +6,13 @@ public class Profile {
 	private int height;
 	private int bmi;
 	private int weight;
-	public String getId() {
-		return id;
+	
+	
+	public String getUserName() {
+		return userName;
 	}
-	public void setId(String id) {
-		this.id = id;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 	public int getPeriod() {
 		return period;
