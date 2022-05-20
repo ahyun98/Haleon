@@ -11,7 +11,7 @@
           <b-nav-item to="/videos">Videos</b-nav-item>
           <b-nav-item href="/ranking">Ranking</b-nav-item>
           <b-nav-item href="/board">Board</b-nav-item>
-          <b-nav-item href="/gym">GYM</b-nav-item>
+          <b-nav-item href="/map">GYM</b-nav-item>
           <b-nav-item href="/wordout">Work-out</b-nav-item>
         </b-navbar-nav>
 

@@ -6,7 +6,7 @@
 
 <script>
 
-import UserJoin from '../components/User/UserJoin.vue'
+import UserJoin from '@/components/User/UserJoin.vue'
 
 export default {
     name : "JoinView",
