@@ -50,7 +50,7 @@ public class CommunityBoardController {
 	
 	@PutMapping("/communityBoard")
 	public ResponseEntity<String> update(CommunityBoard board){
-		boardService.modifyBoard(board); //결과 boolean 이니까 가져다가 써도 좋다.
+		boardService.modifyBoard(board);
 		return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
 	}
 
