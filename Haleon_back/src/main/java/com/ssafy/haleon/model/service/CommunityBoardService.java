@@ -11,7 +11,7 @@ public interface CommunityBoardService {
 		//글수정
 		void modifyBoard(CommunityBoard communityBoard);
 		//글삭제
-		void deleteBoard(int id);
+		boolean deleteBoard(int id);
 		//조회수 증가
 		void updateCnt(int id);
 		//글 얻어오기

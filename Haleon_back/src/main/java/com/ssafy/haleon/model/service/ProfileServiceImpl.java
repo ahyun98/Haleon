@@ -3,8 +3,11 @@ package com.ssafy.haleon.model.service;
 import java.util.HashMap;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.ssafy.haleon.model.dto.Profile;
 
+@Service
 public class ProfileServiceImpl implements ProfileService {
 
 	@Override

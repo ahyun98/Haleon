@@ -13,11 +13,11 @@
 	</resultMap>
 
 	<insert id="insertProfile" parameterType="profile">
-		INSERT INTO profile VALUES (0, #{period}, #{height}, #{bmi}, #{weight})
+		INSERT INTO profile_list VALUES (0, #{period}, #{height}, #{bmi}, #{weight})
 	</insert>	
 
 	<update id="updateProfile" parameterType="profile">
-		UPDATE profile 
+		UPDATE profile_list 
 		SET
 		period = #{period},
 		height = #{height},
@@ -27,6 +27,6 @@
 	</update>
 	
 	<select id="selectOne" resultMap="profileMap" parameterType="String">
-		SELECT id, period, height, bmi, weight FROM profile WHERE id = #{id}
+		SELECT id, period, height, bmi, weight FROM profile_list WHERE id = #{id}
 	</select>
 </mapper>

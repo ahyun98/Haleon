@@ -6,11 +6,11 @@ import java.util.List;
 import com.ssafy.haleon.model.dto.RoutineBoard;
 
 public interface RoutineBoardService {
-	void writeBoard(RoutineBoard routineBoard);
-	void modifyBoard(RoutineBoard routineBoard);
-	void deleteBoard(int id);
-	void updateCnt(int id);
-	RoutineBoard getBoardById(int id);
-	RoutineBoard readBoard(int id);
-	List<RoutineBoard> getBoardList(HashMap<String, String> params);
+	void routineWriteBoard(RoutineBoard routineBoard);
+	void routineModifyBoard(RoutineBoard routineBoard);
+	boolean routineDeleteBoard(int num);
+	void routineUpdateCnt(int num);
+	RoutineBoard routineGetBoardById(int num);
+	RoutineBoard routineReadBoard(int num);
+	List<RoutineBoard> routineGetBoardList(HashMap<String, String> params);
 }

@@ -16,46 +16,46 @@ public class RoutineBoardServiceImpl implements RoutineBoardService {
 	private RoutineBoardDao routineBoardDao;
 	
 	@Override
-	public void writeBoard(RoutineBoard routineBoard) {
-		routineBoardDao.insertBoard(routineBoard);
+	public void routineWriteBoard(RoutineBoard routineBoard) {
+		routineBoardDao.routineInsertBoard(routineBoard);
 	}
 
 	@Override
-	public void modifyBoard(RoutineBoard routineBoard) {
-		RoutineBoard originBoard = routineBoardDao.selectOne(routineBoard.getNo());
+	public void routineModifyBoard(RoutineBoard routineBoard) {
+		RoutineBoard originBoard = routineBoardDao.routineSelectOne(routineBoard.getNum());
 		originBoard.setContent(routineBoard.getContent());
 		originBoard.setTitle(routineBoard.getContent());
 		//저장 날짜도 변경되도록 설정함
 		originBoard.setRegDate(routineBoard.getRegDate());
 		
-		routineBoardDao.insertBoard(originBoard);
+		routineBoardDao.routineInsertBoard(originBoard);
 	}
 
 	@Override
-	public void deleteBoard(int no) {
-		routineBoardDao.deleteBoard(no);
+	public boolean routineDeleteBoard(int num) {
+		return routineBoardDao.routineDeleteBoard(num) == 1; 
 	}
 
 	@Override
-	public void updateCnt(int id) {
-		RoutineBoard originBoard = routineBoardDao.selectOne(id);
+	public void routineUpdateCnt(int num) {
+		RoutineBoard originBoard = routineBoardDao.routineSelectOne(num);
 		originBoard.setViewCnt(originBoard.getViewCnt()+1);
 	}
 
 	@Override
-	public RoutineBoard getBoardById(int id) {
-		return routineBoardDao.selectOne(id);
+	public RoutineBoard routineGetBoardById(int num) {
+		return routineBoardDao.routineSelectOne(num);
 	}
 
 	@Override
-	public RoutineBoard readBoard(int id) {
-		updateCnt(routineBoardDao.selectOne(id).getNo());
-		return routineBoardDao.selectOne(id);
+	public RoutineBoard routineReadBoard(int num) {
+		routineUpdateCnt(routineBoardDao.routineSelectOne(num).getNum());
+		return routineBoardDao.routineSelectOne(num);
 	}
 
 	@Override
-	public List<RoutineBoard> getBoardList(HashMap<String, String> params) {
-		return routineBoardDao.selectList(params);
+	public List<RoutineBoard> routineGetBoardList(HashMap<String, String> params) {
+		return routineBoardDao.routineSelectList(params);
 	}
 
 }

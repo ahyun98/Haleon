@@ -30,8 +30,8 @@ public class CommunityBoardServiceImpl implements CommunityBoardService {
 	}
 
 	@Override
-	public void deleteBoard(int id) {
-		communityBoardDao.deleteBoard(id);
+	public boolean deleteBoard(int id) {
+		return communityBoardDao.deleteBoard(id) == 1;
 	}
 
 	@Override

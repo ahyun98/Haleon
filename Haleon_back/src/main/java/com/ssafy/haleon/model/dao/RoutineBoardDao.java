@@ -6,9 +6,9 @@ import java.util.List;
 import com.ssafy.haleon.model.dto.RoutineBoard;
 
 public interface RoutineBoardDao {
-	void updateBoard(RoutineBoard routineBoard);
-	void insertBoard(RoutineBoard routineBoard);
-	void deleteBoard(int no);
-	RoutineBoard selectOne(int no);
-	List<RoutineBoard> selectList(HashMap<String, String> params);
+	void routineUpdateBoard(RoutineBoard routineBoard);
+	void routineInsertBoard(RoutineBoard routineBoard);
+	int routineDeleteBoard(int num);
+	RoutineBoard routineSelectOne(int num);
+	List<RoutineBoard> routineSelectList(HashMap<String, String> params);
 }
