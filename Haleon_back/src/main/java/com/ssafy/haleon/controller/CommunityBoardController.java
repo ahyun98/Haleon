@@ -33,11 +33,11 @@ public class CommunityBoardController {
 	
 	@GetMapping("/communityBoard")
 	public ResponseEntity<List<CommunityBoard>> list(
-			@RequestParam(defaultValue = "") String mode,
+			@RequestParam(defaultValue = "") String category,
 			@RequestParam(defaultValue = "") String keyword) {
 
 		HashMap<String, String> params = new HashMap<String, String>();
-		params.put("mode", mode);
+		params.put("category", category);
 		params.put("keyword", keyword);
 		return new ResponseEntity<List<CommunityBoard>>(boardService.getBoardList(params), HttpStatus.OK);
 	}

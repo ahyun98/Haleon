@@ -1,7 +1,8 @@
 package com.ssafy.haleon.model.dto;
 
 public class CommunityBoard {
-	private int no;
+	private int num;
+	private String category;
 	private String writer;
 	private String title;
 	private String content;
@@ -9,11 +10,18 @@ public class CommunityBoard {
 	private String regDate;
 	private String fileName;
 	private String fileUri;
-	public int getNo() {
-		return no;
+	
+	public String getCategory() {
+		return category;
 	}
-	public void setNo(int no) {
-		this.no = no;
+	public void setCategory(String category) {
+		this.category = category;
+	}
+	public int getNum() {
+		return num;
+	}
+	public void setNum(int num) {
+		this.num = num;
 	}
 	public String getWriter() {
 		return writer;
@@ -56,6 +64,13 @@ public class CommunityBoard {
 	}
 	public void setFileUri(String fileUri) {
 		this.fileUri = fileUri;
+	}
+	
+	@Override
+	public String toString() {
+		return "CommunityBoard [num=" + num + ", category=" + category + ", writer=" + writer + ", title=" + title
+				+ ", content=" + content + ", viewCnt=" + viewCnt + ", regDate=" + regDate + ", fileName=" + fileName
+				+ ", fileUri=" + fileUri + "]";
 	}	
 	
 }

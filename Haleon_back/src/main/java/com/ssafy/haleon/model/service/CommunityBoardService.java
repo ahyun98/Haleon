@@ -18,6 +18,6 @@ public interface CommunityBoardService {
 		CommunityBoard getBoardById(int id);
 		//글 읽기
 		CommunityBoard readBoard(int id);
-		//모든게시물 조회
+		//카테고리별 모든 게시물 조회
 		List<CommunityBoard> getBoardList(HashMap<String, String> params);
 }

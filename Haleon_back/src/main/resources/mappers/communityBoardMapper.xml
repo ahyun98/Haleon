@@ -4,17 +4,18 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ssafy.haleon.model.dao.CommunityBoardDao">
 	<resultMap type="communityBoard" id="boardMap">
-		<id column="id" property="id" />
+		<id column="num" property="num" />
 		<result column="writer" property="writer" />
 		<result column="title" property="title" />
 		<result column="content" property="content" />
 		<result column="view_cnt" property="viewCnt" />
 		<result column="reg_date" property="regDate" />
+		<result column="category" property="category" />
 	</resultMap>
 
 	<insert id="insertBoard" parameterType="communityBoard">
 		INSERT INTO CommunityBoard VALUES
-		(0, #{writer}, #{title}, #{content}, #{viewCnt},now())
+		(0, #{writer}, #{title}, #{content}, #{viewCnt},now(), #{category})
 	</insert>
 	
 	<update id="updateBoard" parameterType="communityBoard">
@@ -23,36 +24,30 @@
 		title = #{title},
 		writer = #{writer},
 		content = #{content},
-		view_cnt = #{viewCnt}
-		WHERE id = #{id}
+		view_cnt = #{viewCnt},
+		category = #{category}
+		WHERE num = #{num}
 	</update>
 	
 	<delete id="deleteBoard" parameterType="int">
-		DELETE FROM CommunityBoard WHERE id = #{id}
+		DELETE FROM CommunityBoard WHERE num = #{num}
 	</delete>
 
 	<select id="selectOne" resultMap="boardMap" parameterType="int">
-		SELECT id, title, writer, content, view_cnt,
-		date_format(reg_date, '%Y-%m-%d %H:%i:%s') as reg_date
+		SELECT num, title, writer, content, view_cnt,
+		date_format(reg_date, '%Y-%m-%d %H:%i:%s') as reg_date, category
 		FROM CommunityBoard
-		WHERE id = #{id}
+		WHERE num = #{num}
 	</select>
-
-
+	
 	<select id="selectList" resultMap="boardMap"
 		parameterType="java.util.HashMap">
-		SELECT id, title, writer, content, view_cnt,
-		date_format(reg_date, '%Y-%m-%d %H:%i:%s') as reg_date
+		SELECT num, title, writer, content, view_cnt,
+		date_format(reg_date, '%Y-%m-%d %H:%i:%s') as reg_date,
+		category
 		FROM CommunityBoard
-		<if test="mode == 1">
-			WHERE title LIKE CONCAT('%', #{keyword}, '%')
-		</if>
-		<if test="mode == 2">
-			WHERE content LIKE '%${keyword}%'
-		</if>
-		<if test="mode == 3">
-			WHERE title LIKE CONCAT('%', #{keyword}, '%')
-			OR content LIKE '%${keyword}%'
-		</if>
+		WHERE (title LIKE CONCAT('%', #{keyword}, '%')
+			OR content LIKE '%${keyword}%')
+			AND category = #{category}
 	</select>
 </mapper>

@@ -1,8 +1,5 @@
 package com.ssafy.haleon.model.dto;
 
-import lombok.Data;
-
-
 public class RoutineBoard {
 	private int num;
 	private String writer;

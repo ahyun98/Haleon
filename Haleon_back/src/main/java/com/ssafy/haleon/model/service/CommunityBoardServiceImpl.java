@@ -22,7 +22,7 @@ public class CommunityBoardServiceImpl implements CommunityBoardService {
 
 	@Override
 	public void modifyBoard(CommunityBoard communityBoard) {
-		CommunityBoard originBoard = communityBoardDao.selectOne(communityBoard.getNo());
+		CommunityBoard originBoard = communityBoardDao.selectOne(communityBoard.getNum());
 		originBoard.setContent(communityBoard.getContent());
 		originBoard.setTitle(communityBoard.getTitle());
 		
