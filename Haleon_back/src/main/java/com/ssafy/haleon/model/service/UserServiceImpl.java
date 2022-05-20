@@ -1,5 +1,8 @@
 package com.ssafy.haleon.model.service;
 
+import java.util.HashMap;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,12 +26,17 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User login(String id, String pw) throws Exception {
 		User user = userDao.selectById(id);
-		if( user == null)
+		if( user == null) // 유저가 없는 경우
 			throw new UserNotFoundException();
-		else if( !user.getPw().equals(pw))
+		else if( !user.getPw().equals(pw)) // 패스워드가 일치하지 않는 경우
 			throw new PWIncorrectException();
 		else
 			return user;
+	}
+
+	@Override
+	public List<User> getUserList(HashMap<String, String> params) {
+		return userDao.getSelectList(params);
 	}
 
 }

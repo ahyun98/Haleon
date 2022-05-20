@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class Profile {
-	private String id;
+	private String userName;
 	private int period;
 	private int height;
 	private int bmi;

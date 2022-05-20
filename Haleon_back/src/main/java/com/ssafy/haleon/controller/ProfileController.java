@@ -44,9 +44,8 @@ public class ProfileController {
 
 	// 프로필 수정
 	@PutMapping("/profile")
-	public ResponseEntity<String> login(Profile profile) {
+	public ResponseEntity<String> modify(Profile profile) {
 		profileService.modifyProfile(profile);
-		;
 		return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
 	}
 	

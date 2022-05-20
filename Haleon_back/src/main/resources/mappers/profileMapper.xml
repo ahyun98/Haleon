@@ -5,7 +5,7 @@
   
 <mapper namespace="com.ssafy.haleon.model.dao.ProfileDao">
 	<resultMap type="profile" id="profileMap">
-		<id column="id" property="id"></id>
+		<id column="username" property="userName"></id>
 		<result column="period" property="period" />
 		<result column="height" property="height" />
 		<result column="bmi" property="bmi" />
@@ -13,20 +13,21 @@
 	</resultMap>
 
 	<insert id="insertProfile" parameterType="profile">
-		INSERT INTO profile_list VALUES (0, #{period}, #{height}, #{bmi}, #{weight})
+		INSERT INTO profile_list VALUES (0, #{userName}, #{period}, #{height}, #{bmi}, #{weight})
 	</insert>	
 
 	<update id="updateProfile" parameterType="profile">
 		UPDATE profile_list 
 		SET
+		username = #{userName},
 		period = #{period},
 		height = #{height},
 		bmi = #{bmi},
 		weight = #{weight}
-		WHERE id = #{id}
+		WHERE username = #{userName}
 	</update>
 	
 	<select id="selectOne" resultMap="profileMap" parameterType="String">
-		SELECT id, period, height, bmi, weight FROM profile_list WHERE id = #{id}
+		SELECT username, period, height, bmi, weight FROM profile_list WHERE username = #{userName}
 	</select>
 </mapper>
