@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ssafy.haleon.exception.PWIncorrectException;
+import com.ssafy.haleon.exception.UserDuplicateException;
 import com.ssafy.haleon.exception.UserNotFoundException;
 import com.ssafy.haleon.model.dao.UserDao;
 import com.ssafy.haleon.model.dto.User;
@@ -19,8 +20,11 @@ public class UserServiceImpl implements UserService {
 		
 	@Override
 	public void join(User user) {
-		String id = user.getId();
-		userDao.insertUser(user);
+		//ID 중복 체크
+		if(userDao.selectById(user.getId()) == null)
+			userDao.insertUser(user);
+		else
+			new UserDuplicateException();
 	}
 
 	@Override

@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ssafy.haleon.exception.UserNameDuplicateException;
 import com.ssafy.haleon.model.dao.ProfileDao;
 import com.ssafy.haleon.model.dto.Profile;
 
@@ -17,7 +18,11 @@ public class ProfileServiceImpl implements ProfileService {
 	
 	@Override
 	public void writeProfile(Profile profile) {
-		profileDao.insertProfile(profile);
+		//중복 체크
+		if(profileDao.selectOne(profile.getUserName()) == null)
+			profileDao.insertProfile(profile);
+		else
+			new UserNameDuplicateException();
 	}
 
 	@Override
