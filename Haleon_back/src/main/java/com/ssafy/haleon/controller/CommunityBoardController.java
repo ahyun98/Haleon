@@ -42,6 +42,18 @@ public class CommunityBoardController {
 		return new ResponseEntity<List<CommunityBoard>>(boardService.getBoardList(params), HttpStatus.OK);
 	}
 	
+	@GetMapping("/communityBoardDesc")
+	public ResponseEntity<List<CommunityBoard>> listDesc(
+			@RequestParam(defaultValue = "") String category,
+			@RequestParam(defaultValue = "") String keyword) {
+
+		HashMap<String, String> params = new HashMap<String, String>();
+		params.put("category", category);
+		params.put("keyword", keyword);
+		return new ResponseEntity<List<CommunityBoard>>(boardService.getBoardListDesc(params), HttpStatus.OK);
+	}
+	
+	
 	@PostMapping("/communityBoard")
 	public ResponseEntity<String> write(CommunityBoard board){
 		boardService.writeBoard(board);

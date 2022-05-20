@@ -12,6 +12,8 @@ public interface CommunityBoardDao {
 	
 	//게시글 읽기
 	CommunityBoard selectOne(int num);
-	//게시글 목록 selectList
+	//게시글 목록 불러오기
 	List<CommunityBoard> selectList(HashMap<String, String> params);
+	//게시글 목록 등록 일자 내림차순
+	List<CommunityBoard> selectListDESC(HashMap<String, String> params);
 }

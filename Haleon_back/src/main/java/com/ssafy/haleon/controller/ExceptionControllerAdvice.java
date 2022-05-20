@@ -18,7 +18,6 @@ public class ExceptionControllerAdvice {
 	//ControllerAdvice인 클래스에 모아놓으면 어느 컨트롤러에서나 동작
 	@ExceptionHandler(Exception.class)
 	public String handleException(Exception ex, Model model) {
-		System.out.println("123333333333");
 		logger.error("Exception 발생 : {}", ex.getMessage());
 		model.addAttribute("msg", ex.getMessage());
 		return "error/error";
