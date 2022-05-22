@@ -48,15 +48,8 @@
 		SELECT num, title, writer, content, file_name, file_uri, view_cnt,
 		date_format(reg_date, '%Y-%m-%d %H:%i:%s') as reg_date
 		FROM RoutineBoard
-		<if test="mode == 1">
-			WHERE title LIKE CONCAT('%', #{keyword}, '%')
-		</if>
-		<if test="mode == 2">
-			WHERE content LIKE '%${keyword}%'
-		</if>
-		<if test="mode == 3">
-			WHERE title LIKE CONCAT('%', #{keyword}, '%')
-			OR content LIKE '%${keyword}%'
-		</if>
+		WHERE title LIKE CONCAT('%', #{keyword}, '%')
+		OR content LIKE '%${keyword}%'
+
 	</select>
 </mapper>

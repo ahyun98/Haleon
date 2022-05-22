@@ -9,5 +9,5 @@ public interface UserDao {
 	void insertUser(User user);
 	User selectById(String id);
 	List<User> getSelectList(HashMap<String, String> params);
-	void routineUpdateBoard(User user);
+	void updateUser(User user);
 }

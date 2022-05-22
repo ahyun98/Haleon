@@ -1,4 +1,4 @@
-package com.ssafy.haleon.controller;
+package com.ssafy.haleon.interceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
