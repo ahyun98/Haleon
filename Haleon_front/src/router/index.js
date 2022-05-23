@@ -6,6 +6,8 @@ import BoardView from '@/views/BoardView.vue'
 import LoginView from '@/views/LoginView.vue'
 import JoinView from '@/views/JoinView.vue'
 import MapView from '@/views/MapView.vue'
+import BoardinsertView from '@/views/BoardinsertView.vue'
+
 
 
 
@@ -51,6 +53,11 @@ const routes = [
     path: '/map',
     name: 'map',
     component: MapView
+  },
+  {
+    path: '/boardinsert',
+    name: 'boardinsert',
+    component: BoardinsertView
   }
 ]
 

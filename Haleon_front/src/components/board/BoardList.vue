@@ -2,19 +2,25 @@
   <div class = "board">
 
     <div class="overflow-auto">
-        <p class="mt-3" style="font-size:25px;">공지사항</p>
+
+        <p class="mt-3" style="font-size:25px;">{{boardtitle}}</p>
         <div class = "infobox">
         <span class="mt-3">Current Page: {{ currentPage }}</span>
-        <span class = "search"><input type = "text" id = "input" placeholder="search"><button id = "input"><img src = "@/assets/search.png" style="width:40px; height:40px; min-height:1px !important;"></button></span>
+        <span class = "search"><input type = "text" id = "input" placeholder="search" v-model="keyword"><button id = "input"><img src = "@/assets/search.png" style="width:40px; height:40px; min-height:1px !important;"></button></span>
         </div>
         <b-table
         id="my-table"
-        :items="items"
+        @row-clicked="goDetail"
+        :items="boards"
         :per-page="perPage"
         :current-page="currentPage"
-        
-        ></b-table>
-        
+        :fields="fields"
+        >
+        <template #cell(detail)="row">
+            <b-button size = "sm" @click = "row.toggleDetails" style="border:0;">자세히</b-button>
+        </template>
+        </b-table>
+        <button class = "insertformbtn" @click="insertform">글쓰기</button>
         <b-pagination
         align="center"
         v-model="currentPage"
@@ -28,105 +34,71 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 
 
 export default {
     name: "BoardList",
+    props:['boardtitle'],
     data() {
         
         return {
-        perPage: 20,
+        perPage: 2,
         currentPage: 1,
-        items: [
-          { id: 1, first_name: 'Fred', last_name: 'Flintstone' },
-          { id: 2, first_name: 'Wilma', last_name: 'Flintstone' },
-          { id: 3, first_name: 'Barney', last_name: 'Rubble' },
-          { id: 4, first_name: 'Betty', last_name: 'Rubble' },
-          { id: 5, first_name: 'Pebbles', last_name: 'Flintstone' },
-          { id: 6, first_name: 'Bamm Bamm', last_name: 'Rubble' },
-          { id: 7, first_name: 'The Great', last_name: 'Gazzoo' },
-          { id: 8, first_name: 'Rockhead', last_name: 'Slate' },
-          { id: 9, first_name: 'Pearl', last_name: 'Slaghoople' },
-          { id: 1, first_name: 'Fred', last_name: 'Flintstone' },
-          { id: 2, first_name: 'Wilma', last_name: 'Flintstone' },
-          { id: 3, first_name: 'Barney', last_name: 'Rubble' },
-          { id: 4, first_name: 'Betty', last_name: 'Rubble' },
-          { id: 5, first_name: 'Pebbles', last_name: 'Flintstone' },
-          { id: 6, first_name: 'Bamm Bamm', last_name: 'Rubble' },
-          { id: 7, first_name: 'The Great', last_name: 'Gazzoo' },
-          { id: 8, first_name: 'Rockhead', last_name: 'Slate' },
-          { id: 9, first_name: 'Pearl', last_name: 'Slaghoople' },
-          { id: 1, first_name: 'Fred', last_name: 'Flintstone' },
-          { id: 2, first_name: 'Wilma', last_name: 'Flintstone' },
-          { id: 3, first_name: 'Barney', last_name: 'Rubble' },
-          { id: 4, first_name: 'Betty', last_name: 'Rubble' },
-          { id: 5, first_name: 'Pebbles', last_name: 'Flintstone' },
-          { id: 6, first_name: 'Bamm Bamm', last_name: 'Rubble' },
-          { id: 7, first_name: 'The Great', last_name: 'Gazzoo' },
-          { id: 8, first_name: 'Rockhead', last_name: 'Slate' },
-          { id: 9, first_name: 'Pearl', last_name: 'Slaghoople' },
-          { id: 1, first_name: 'Fred', last_name: 'Flintstone' },
-          { id: 2, first_name: 'Wilma', last_name: 'Flintstone' },
-          { id: 3, first_name: 'Barney', last_name: 'Rubble' },
-          { id: 4, first_name: 'Betty', last_name: 'Rubble' },
-          { id: 5, first_name: 'Pebbles', last_name: 'Flintstone' },
-          { id: 6, first_name: 'Bamm Bamm', last_name: 'Rubble' },
-          { id: 7, first_name: 'The Great', last_name: 'Gazzoo' },
-          { id: 8, first_name: 'Rockhead', last_name: 'Slate' },
-          { id: 9, first_name: 'Pearl', last_name: 'Slaghoople' },
-          { id: 1, first_name: 'Fred', last_name: 'Flintstone' },
-          { id: 2, first_name: 'Wilma', last_name: 'Flintstone' },
-          { id: 3, first_name: 'Barney', last_name: 'Rubble' },
-          { id: 4, first_name: 'Betty', last_name: 'Rubble' },
-          { id: 5, first_name: 'Pebbles', last_name: 'Flintstone' },
-          { id: 6, first_name: 'Bamm Bamm', last_name: 'Rubble' },
-          { id: 7, first_name: 'The Great', last_name: 'Gazzoo' },
-          { id: 8, first_name: 'Rockhead', last_name: 'Slate' },
-          { id: 9, first_name: 'Pearl', last_name: 'Slaghoople' },
-          { id: 1, first_name: 'Fred', last_name: 'Flintstone' },
-          { id: 2, first_name: 'Wilma', last_name: 'Flintstone' },
-          { id: 3, first_name: 'Barney', last_name: 'Rubble' },
-          { id: 4, first_name: 'Betty', last_name: 'Rubble' },
-          { id: 5, first_name: 'Pebbles', last_name: 'Flintstone' },
-          { id: 6, first_name: 'Bamm Bamm', last_name: 'Rubble' },
-          { id: 7, first_name: 'The Great', last_name: 'Gazzoo' },
-          { id: 8, first_name: 'Rockhead', last_name: 'Slate' },
-          { id: 9, first_name: 'Pearl', last_name: 'Slaghoople' },
-          { id: 1, first_name: 'Fred', last_name: 'Flintstone' },
-          { id: 2, first_name: 'Wilma', last_name: 'Flintstone' },
-          { id: 3, first_name: 'Barney', last_name: 'Rubble' },
-          { id: 4, first_name: 'Betty', last_name: 'Rubble' },
-          { id: 5, first_name: 'Pebbles', last_name: 'Flintstone' },
-          { id: 6, first_name: 'Bamm Bamm', last_name: 'Rubble' },
-          { id: 7, first_name: 'The Great', last_name: 'Gazzoo' },
-          { id: 8, first_name: 'Rockhead', last_name: 'Slate' },
-          { id: 9, first_name: 'Pearl', last_name: 'Slaghoople' },
-          { id: 1, first_name: 'Fred', last_name: 'Flintstone' },
-          { id: 2, first_name: 'Wilma', last_name: 'Flintstone' },
-          { id: 3, first_name: 'Barney', last_name: 'Rubble' },
-          { id: 4, first_name: 'Betty', last_name: 'Rubble' },
-          { id: 5, first_name: 'Pebbles', last_name: 'Flintstone' },
-          { id: 6, first_name: 'Bamm Bamm', last_name: 'Rubble' },
-          { id: 7, first_name: 'The Great', last_name: 'Gazzoo' },
-          { id: 8, first_name: 'Rockhead', last_name: 'Slate' },
-          { id: 9, first_name: 'Pearl', last_name: 'Slaghoople' },
-        ]
+        keyword: "",
+        items: this.boards,
+        fields: [{key: "num",
+            label: '#',}, 'title', 'writer','regDate','viewCnt','detail'],
       }
     },
     computed: {
       rows() {
-        return this.items.length
-      }
+        return this.boards.length
+      },
+      ...mapState([
+          "boards"
+      ])
     },
     components: {
         
     },
     methods:{
+        search(){
+            const payload = {
+                category : this.boardtitle,
+                keyword : this.keyword
+            }
+            this.$store.dispatch('getBoards',payload)
+        },
+        myRowClickHandler(record, index) {
+            // 'record' will be the row data from items
+            // `index` will be the visible row number (available in the v-model 'shownItems')
+            console.log(record); // This will be the item data for the row
+            console.log(index);
+        },
+        insertform(){
+            this.$router.push({name : 'boardinsert'})
+        }
 
+    },
+    created(){
+        const payload = {
+            category:this.boardtitle,
+            keyword : null
+        }
+        this.$store.dispatch('getBoards',payload)
 
+    },
+    watch: {
+        boardtitle: function(){
+            const payload = {
+            category:this.boardtitle,
+            keyword : null
+            }
+            this.$store.dispatch('getBoards',payload)
+        }
     }
 }
-
 
 </script>
 
@@ -155,6 +127,7 @@ export default {
     #my-table{
         color: white;
         margin-top: 15px;
+        text-align: center;
     }
     .board{
         margin: 30px 0px 0px 0px;
@@ -181,5 +154,21 @@ export default {
         background-color: #131515;
         border:0;
         color: white;
+    }
+    .btn-secondary{
+        background-color: #131515 !important;
+    }
+    .btn-secondary:hover{
+        background-color: #00b99a !important;
+    }
+    .insertfrombtn{
+        position: absolute;
+        right: 10%;
+        background-color: #7DE2D1;
+        margin: 0px 5px 0px 0px;
+        color: #131515;
+        border-radius: 5px 5px 5px 5px;
+        border-color: #7DE2D1;
+        font-weight: bolder;
     }
 </style>
