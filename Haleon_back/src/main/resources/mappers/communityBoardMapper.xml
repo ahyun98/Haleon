@@ -8,6 +8,8 @@
 		<result column="writer" property="writer" />
 		<result column="title" property="title" />
 		<result column="content" property="content" />
+		<result column="file_name" property="fileName"/>
+		<result column="file_uri" property="fileUri"/>
 		<result column="view_cnt" property="viewCnt" />
 		<result column="reg_date" property="regDate" />
 		<result column="category" property="category" />
@@ -15,7 +17,7 @@
 
 	<insert id="insertBoard" parameterType="communityBoard">
 		INSERT INTO CommunityBoard VALUES
-		(0, #{writer}, #{title}, #{content}, #{viewCnt},now(), #{category})
+		(0, #{writer}, #{title}, #{content}, #{fileName}, #{fileUri}, #{viewCnt}, now(), #{category})
 	</insert>
 	
 	<update id="updateBoard" parameterType="communityBoard">
@@ -24,6 +26,8 @@
 		title = #{title},
 		writer = #{writer},
 		content = #{content},
+		file_name = #{fileName}, 
+		file_uri = #{fileUri},
 		view_cnt = #{viewCnt},
 		category = #{category}
 		WHERE num = #{num}
@@ -34,7 +38,7 @@
 	</delete>
 
 	<select id="selectOne" resultMap="boardMap" parameterType="int">
-		SELECT num, title, writer, content, view_cnt,
+		SELECT num, title, writer, content, view_cnt, file_name, file_uri,
 		date_format(reg_date, '%Y-%m-%d %H:%i:%s') as reg_date, category
 		FROM CommunityBoard
 		WHERE num = #{num}
@@ -42,7 +46,7 @@
 	
 	<select id="selectList" resultMap="boardMap"
 		parameterType="java.util.HashMap">
-		SELECT num, title, writer, content, view_cnt,
+		SELECT num, title, writer, content, view_cnt, file_name, file_uri,
 		date_format(reg_date, '%Y-%m-%d %H:%i:%s') as reg_date,
 		category
 		FROM CommunityBoard
@@ -53,7 +57,7 @@
 	
 	<select id="selectListDESC" resultMap="boardMap"
 		parameterType="java.util.HashMap">
-		SELECT num, title, writer, content, view_cnt,
+		SELECT num, title, writer, content, view_cnt, file_name, file_uri,
 		date_format(reg_date, '%Y-%m-%d %H:%i:%s') as reg_date,
 		category
 		FROM CommunityBoard

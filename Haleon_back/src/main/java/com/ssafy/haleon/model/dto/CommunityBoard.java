@@ -11,6 +11,20 @@ public class CommunityBoard {
 	private String fileName;
 	private String fileUri;
 	
+	public CommunityBoard() {
+		super();
+	}
+	public CommunityBoard(int num, String category, String writer, String title, String content, int viewCnt,
+			String regDate) {
+		super();
+		this.num = num;
+		this.category = category;
+		this.writer = writer;
+		this.title = title;
+		this.content = content;
+		this.viewCnt = viewCnt;
+		this.regDate = regDate;
+	}
 	public String getCategory() {
 		return category;
 	}

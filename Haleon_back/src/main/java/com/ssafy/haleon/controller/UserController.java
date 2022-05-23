@@ -33,10 +33,10 @@ public class UserController {
 		if(user != null) {
 			//Dao단에서 user 중복 체크가 이루어짐. 여기서 그래서 따로 안함
 			User u = user;
-			String jwtId = jwtUtil.createToken("id", user.getId());
-			String jwtPw = jwtUtil.createToken("pw", user.getPw());
-			u.setId(jwtId);
-			u.setPw(jwtPw);
+//			String jwtId = jwtUtil.createToken("id", user.getId());
+//			String jwtPw = jwtUtil.createToken("pw", user.getPw());
+//			u.setId(jwtId);
+//			u.setPw(jwtPw);
 			userService.join(u);
 			return new ResponseEntity<User>(HttpStatus.CREATED);
 		}
@@ -47,6 +47,7 @@ public class UserController {
 	// 로그인 기능 (회원 조회)
 	@GetMapping("/user")
 	public ResponseEntity<User> login(String id, String pw) throws Exception{
+		
 		User user = userService.login(id, pw);
 		return new ResponseEntity<User>(user, HttpStatus.OK);
 	}
