@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.ssafy.haleon.model.dto.VideoLog">
+  	<resultMap type="videoLog" id="videoMap">
+		<id column="seq" property="seq"/>
+		<result column="user_name" property="userName" />
+		<result column="video_id" property="videoId" />
+		<result column="view_cnt" property="viewCnt" />
+	</resultMap>
+  	<insert id="insertVideoLog">
+  		INSERT INTO video_log VALUES (0, #{userName}, #{videoId}, #{viewCnt})
+  	</insert>
+  	
+  	<delete id="deleteVideoLog">
+  		DELETE FROM video_log WHERE seq = #{seq}
+  	</delete>
+  	
+  	<select id="selectOne">
+  		SELECT seq, user_name, video_id, view_cnt FROM seq = #{seq}
+  	</select>
+  	
+  	<select id="selectVideoByName">
+  		SELECT seq, user_name, video_id, view_cnt FROM user_name = #{userName}
+  	</select>
+  	
+  	<select id="selectVideoList" resultMap="videoMap">
+		SELECT user_name, video_id, view_cnt FROM video_log  	
+  	</select>
+  
+  	<select id="selectVideoListDESC" resultMap="videoMap">
+		SELECT user_name, video_id, view_cnt FROM video_log ORDER BY view_cnt DESC	
+  	</select>
+  	
+  </mapper>
