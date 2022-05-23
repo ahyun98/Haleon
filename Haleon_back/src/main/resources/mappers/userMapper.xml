@@ -3,11 +3,19 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ssafy.haleon.model.dao.UserDao">
+	
+	<resultMap type="user" id="userMap">
+		<id column="seq" property="seq"/>
+		<result column="id" property="id" />
+		<result column="pw" property="pw" />
+		<result column="username" property="username" />
+	</resultMap>
+
 	<insert id="insertUser" parameterType="user">
 		INSERT INTO user_list VALUES(0, #{id}, #{pw}, #{username})
 	</insert>
-	<select id="selectById" resultType="user" parameterType="String">
-		SELECT * FROM user_list WHERE id LIKE #{id}
+	<select id="selectById" resultMap="userMap" parameterType="String">
+		SELECT id, pw, username FROM user_list WHERE id LIKE #{id}
 	</select>
 	
 </mapper>
