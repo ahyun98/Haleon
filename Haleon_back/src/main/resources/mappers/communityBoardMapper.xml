@@ -5,8 +5,8 @@
 <mapper namespace="com.ssafy.haleon.model.dao.CommunityBoardDao">
 	<resultMap type="communityBoard" id="boardMap">
 		<id column="num" property="num"/>
-		<result column="writer" property="writer" />
 		<result column="title" property="title" />
+		<result column="writer" property="writer" />
 		<result column="content" property="content" />
 		<result column="file_name" property="fileName"/>
 		<result column="file_uri" property="fileUri"/>
@@ -17,7 +17,7 @@
 
 	<insert id="insertBoard" parameterType="communityBoard">
 		INSERT INTO CommunityBoard VALUES
-		(0, #{writer}, #{title}, #{content}, #{fileName}, #{fileUri}, #{viewCnt}, now(), #{category})
+		(0, #{title}, #{writer}, #{content}, #{fileName}, #{fileUri}, #{viewCnt}, now(), #{category})
 	</insert>
 	
 	<update id="updateBoard" parameterType="communityBoard">
