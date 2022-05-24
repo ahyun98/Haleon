@@ -46,8 +46,5 @@ public class ProfileServiceImpl implements ProfileService {
 		return profileDao.selectOne(id);
 	}
 
-	@Override
-	public List<Profile> getProfileList(HashMap<String, String> params) {
-		return profileDao.profileSelectList(params);
-	}
+
 }

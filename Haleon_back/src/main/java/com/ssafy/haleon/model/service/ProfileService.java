@@ -11,6 +11,5 @@ public interface ProfileService {
 	void modifyProfile(Profile profile);
 	void deleteProfile(String id);
 	Profile selectOne(String id);
-	List<Profile> getProfileList(HashMap<String, String> params);
 
 }

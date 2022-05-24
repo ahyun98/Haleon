@@ -14,7 +14,7 @@ public interface VideoLogDao {
 	
 	VideoLog selectVideoByName(String username);
 	//시청 기록 목록 불러오기
-	List<VideoLog> selectVideoList(HashMap<String, String> params);
+	List<VideoLog> selectVideoList();
 	//시청 기록 목록 조회수 내림차순
-	List<VideoLog> selectVideoListDESC(HashMap<String, String> params);
+	List<VideoLog> selectVideoListDESC();
 }

@@ -47,15 +47,15 @@ public class RoutineBoardController {
 		return new ResponseEntity<String>(HttpStatus.OK);
 	}
 	
-	@GetMapping("/routine")
-	public ResponseEntity<List<RoutineBoard>> list(
-			@RequestParam(defaultValue = "") String mode,
-			@RequestParam(defaultValue = "") String keyword) {
-
-		HashMap<String, String> params = new HashMap<String, String>();
-		params.put("mode", mode);
-		params.put("keyword", keyword);
-		return new ResponseEntity<List<RoutineBoard>>(boardService.routineGetBoardList(params), HttpStatus.OK);
+	@GetMapping("/routine/{id}")
+	public ResponseEntity<List<RoutineBoard>> list(String id) {
+		return new ResponseEntity<List<RoutineBoard>>(boardService.routineGetBoardList(id), HttpStatus.OK);
+	}
+	
+	@PutMapping("/routine")
+	public ResponseEntity<String> modify(RoutineBoard routineBoard){
+		boardService.routineModifyBoard(routineBoard);
+		return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
 	}
 	
 }

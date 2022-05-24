@@ -33,13 +33,13 @@ public class VideoLogServiceImpl implements VideoLogService {
 	}
 
 	@Override
-	public List<VideoLog> getVideoLogList(HashMap<String, String> params) {
-		return videoLogDao.selectVideoList(params);
+	public List<VideoLog> getVideoLogList() {
+		return videoLogDao.selectVideoList();
 	}
 
 	@Override
-	public List<VideoLog> getVideoLogListDesc(HashMap<String, String> params) {
-		return videoLogDao.selectVideoListDESC(params);
+	public List<VideoLog> getVideoLogListDesc() {
+		return videoLogDao.selectVideoListDESC();
 	}
 
 	@Override

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
+
 <mapper namespace="com.ssafy.haleon.model.dao.ProfileDao">
 	<resultMap type="profile" id="profileMap">
 		<id column="id" property="id"></id>
@@ -15,11 +15,13 @@
 	</resultMap>
 
 	<insert id="insertProfile" parameterType="profile">
-		INSERT INTO profile_list VALUES (#{id}, #{period}, #{height}, #{weight}, #{bmi}, #{fatRate}, #{muscleRate})
-	</insert>	
+		INSERT INTO
+		profile_list VALUES (#{id}, #{period}, #{height}, #{weight}, #{bmi},
+		#{fatRate}, #{muscleRate})
+	</insert>
 
 	<update id="updateProfile" parameterType="profile">
-		UPDATE profile_list 
+		UPDATE profile_list
 		SET
 		id = #{id},
 		period = #{period},
@@ -28,10 +30,14 @@
 		bmi = #{bmi},
 		fat_rate = #{fatRate},
 		muscle_rate = #{muscleRate},
-		WHERE id = #{id}
+		WHERE
+		id = #{id}
 	</update>
-	
-	<select id="selectOne" resultMap="profileMap" parameterType="String">
-		SELECT id, period, height, weight, bmi, fat_rate, muscle_rate FROM profile_list WHERE id = #{id}
+
+	<select id="selectOne" resultMap="profileMap"
+		parameterType="String">
+		SELECT id, period, height, weight, bmi, fat_rate,
+		muscle_rate FROM profile_list WHERE id = #{id}
 	</select>
+
 </mapper>

@@ -31,8 +31,13 @@ public class RoutineBoardServiceImpl implements RoutineBoardService {
 	}
 
 	@Override
-	public List<RoutineBoard> routineGetBoardList(HashMap<String, String> params) {
-		return routineBoardDao.routineSelectList(params);
+	public List<RoutineBoard> routineGetBoardList(String id) {
+		return routineBoardDao.routineSelectList(id);
+	}
+
+	@Override
+	public void routineModifyBoard(RoutineBoard routineBoard) {
+		routineBoardDao.routineUpdateBoard(routineBoard);
 	}
 	
 }

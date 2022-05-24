@@ -22,8 +22,8 @@ public interface VideoLogService {
 	VideoLog selectOneByName(String name);
 
 	// 모든 비디오 로그 기록 조회
-	List<VideoLog> getVideoLogList(HashMap<String, String> params);
+	List<VideoLog> getVideoLogList();
 
 	// 모든 비디오 로그 기록 조회수별 조회
-	List<VideoLog> getVideoLogListDesc(HashMap<String, String> params);
+	List<VideoLog> getVideoLogListDesc();
 }

@@ -110,7 +110,7 @@
 		WHERE num = #{num}
 	</update>
 	
-<!-- 	얘 쓰려면 seq 넣어야됨.. -->
+	<!-- 	얘 쓰려면 seq 넣어야됨.. -->
 	<delete id="routineDeleteBoard" parameterType="int">
 		DELETE FROM exercise WHERE num = #{num}
 	</delete>
@@ -121,11 +121,10 @@
 		WHERE num = #{num}
 	</select>
 
-
 	<select id="routineSelectList" resultMap="routineBoardMap"
-		parameterType="java.util.HashMap">
+		parameterType="String">
 		SELECT *
 		FROM exercise
-		WHERE id LIKE CONCAT('%', #{keyword}, '%')
+		WHERE id = #{id}
 	</select>
 </mapper>

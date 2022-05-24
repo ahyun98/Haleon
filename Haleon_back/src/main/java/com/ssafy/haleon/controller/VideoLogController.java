@@ -34,25 +34,13 @@ public class VideoLogController {
 	}
 	
 	@GetMapping("/logList")
-	public ResponseEntity<List<VideoLog>> list(
-			@RequestParam(defaultValue = "") String mode,
-			@RequestParam(defaultValue = "") String keyword) {
-
-		HashMap<String, String> params = new HashMap<String, String>();
-		params.put("mode", mode);
-		params.put("keyword", keyword);
-		return new ResponseEntity<List<VideoLog>>(videoLogService.getVideoLogList(params), HttpStatus.OK);
+	public ResponseEntity<List<VideoLog>> list() {
+		return new ResponseEntity<List<VideoLog>>(videoLogService.getVideoLogList(), HttpStatus.OK);
 	}
 	
 	@GetMapping("/logListDesc")
-	public ResponseEntity<List<VideoLog>> listDesc(
-			@RequestParam(defaultValue = "") String mode,
-			@RequestParam(defaultValue = "") String keyword) {
-
-		HashMap<String, String> params = new HashMap<String, String>();
-		params.put("mode", mode);
-		params.put("keyword", keyword);
-		return new ResponseEntity<List<VideoLog>>(videoLogService.getVideoLogListDesc(params), HttpStatus.OK);
+	public ResponseEntity<List<VideoLog>> listDesc() {
+		return new ResponseEntity<List<VideoLog>>(videoLogService.getVideoLogListDesc(), HttpStatus.OK);
 	}
 	
 	@GetMapping("/videoLog/{seq}")
