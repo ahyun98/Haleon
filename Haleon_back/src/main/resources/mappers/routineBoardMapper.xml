@@ -52,8 +52,8 @@
 	</resultMap>
 
 	<insert id="routineInsertBoard" parameterType="routineBoard">
-		INSERT INTO RoutineBoard VALUES
-		(#{id}, now(), 0, #{card1}, #{card2}, #{card3}, #{card4}, #{card5}, 
+		INSERT INTO exercise VALUES
+		(#{id}, #{regDate}, 0, #{card1}, #{card2}, #{card3}, #{card4}, #{card5}, 
 		#{weight1}, #{weight2}, #{weight3}, #{weight4}, #{weight5}, #{weight6},
 		#{weight7}, #{weight8}, #{weight9}, #{chest1}, #{chest2}, #{chest3},
 		#{chest4}, #{back1}, #{back2}, #{back3}, #{back4}, #{back5},
@@ -63,9 +63,8 @@
 	</insert>
 	
 	<update id="routineUpdateBoard" parameterType="routineBoard">
-		UPDATE RoutineBoard
+		UPDATE exercise
 		SET
-		reg_date = #{regDate}, 
 		card1 = #{card1}, 
 		card2 = #{card2}, 
 		card3 = #{card3}, 
@@ -108,29 +107,25 @@
 		abs5 = #{abs5}, 
 		abs6 = #{abs6}, 
 		abs7 = #{abs7}
-		WHERE id = #{id}
+		WHERE num = #{num}
 	</update>
 	
 <!-- 	얘 쓰려면 seq 넣어야됨.. -->
 	<delete id="routineDeleteBoard" parameterType="int">
-		DELETE FROM RoutineBoard WHERE num = #{num}
+		DELETE FROM exercise WHERE num = #{num}
 	</delete>
 
 	<select id="routineSelectOne" resultMap="routineBoardMap" parameterType="int">
-		SELECT num, title, writer, content, file_name, file_uri, view_cnt, 
-		date_format(reg_date, '%Y-%m-%d %H:%i:%s') as reg_date
-		FROM RoutineBoard
+		SELECT *
+		FROM exercise
 		WHERE num = #{num}
 	</select>
 
 
 	<select id="routineSelectList" resultMap="routineBoardMap"
 		parameterType="java.util.HashMap">
-		SELECT num, title, writer, content, file_name, file_uri, view_cnt,
-		date_format(reg_date, '%Y-%m-%d %H:%i:%s') as reg_date
-		FROM RoutineBoard
-		WHERE title LIKE CONCAT('%', #{keyword}, '%')
-		OR content LIKE '%${keyword}%'
-
+		SELECT *
+		FROM exercise
+		WHERE id LIKE CONCAT('%', #{keyword}, '%')
 	</select>
 </mapper>
