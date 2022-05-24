@@ -1,18 +1,37 @@
 package com.ssafy.haleon.model.dto;
 
 public class Profile {
-	private String userName;
+	private String id;
 	private int period;
 	private int height;
 	private int bmi;
 	private int weight;
+	private int fatRate;
+	private int muscleRate;
 	
 	
-	public String getUserName() {
-		return userName;
+	@Override
+	public String toString() {
+		return "Profile [id=" + id + ", period=" + period + ", height=" + height + ", bmi=" + bmi + ", weight=" + weight
+				+ ", fatRate=" + fatRate + ", muscleRate=" + muscleRate + "]";
 	}
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public int getFatRate() {
+		return fatRate;
+	}
+	public void setFatRate(int fatRate) {
+		this.fatRate = fatRate;
+	}
+	public int getMuscleRate() {
+		return muscleRate;
+	}
+	public void setMuscleRate(int muscleRate) {
+		this.muscleRate = muscleRate;
 	}
 	public int getPeriod() {
 		return period;

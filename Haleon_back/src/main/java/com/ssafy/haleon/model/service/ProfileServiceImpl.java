@@ -19,7 +19,7 @@ public class ProfileServiceImpl implements ProfileService {
 	@Override
 	public void writeProfile(Profile profile) {
 		//중복 체크
-		if(profileDao.selectOne(profile.getUserName()) == null)
+		if(profileDao.selectOne(profile.getId()) == null)
 			profileDao.insertProfile(profile);
 		else
 			new UserNameDuplicateException();
@@ -27,8 +27,8 @@ public class ProfileServiceImpl implements ProfileService {
 
 	@Override
 	public void modifyProfile(Profile profile) {
-		Profile originProfile = profileDao.selectOne(profile.getUserName());
-		originProfile.setUserName(profile.getUserName());
+		Profile originProfile = profileDao.selectOne(profile.getId());
+		originProfile.setId(profile.getId());
 		originProfile.setBmi(profile.getBmi());
 		originProfile.setHeight(profile.getHeight());
 		originProfile.setPeriod(profile.getPeriod());

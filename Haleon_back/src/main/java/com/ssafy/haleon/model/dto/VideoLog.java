@@ -2,7 +2,7 @@ package com.ssafy.haleon.model.dto;
 
 public class VideoLog {
 	private int seq;
-	private String userName;
+	private String id;
 	private String videoId;
 	private int viewCnt;
 	
@@ -12,11 +12,11 @@ public class VideoLog {
 	public void setSeq(int seq) {
 		this.seq = seq;
 	}
-	public String getUserName() {
-		return userName;
+	public String getId() {
+		return id;
 	}
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setUserName(String id) {
+		this.id = id;
 	}
 	public String getVideoId() {
 		return videoId;
@@ -32,7 +32,7 @@ public class VideoLog {
 	}
 	@Override
 	public String toString() {
-		return "videoLog [seq=" + seq + ", userName=" + userName + ", videoId=" + videoId + ", viewCnt=" + viewCnt
+		return "videoLog [seq=" + seq + ", id=" + id + ", videoId=" + videoId + ", viewCnt=" + viewCnt
 				+ "]";
 	}
 	

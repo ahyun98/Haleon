@@ -5,29 +5,33 @@
   
 <mapper namespace="com.ssafy.haleon.model.dao.ProfileDao">
 	<resultMap type="profile" id="profileMap">
-		<id column="username" property="userName"></id>
+		<id column="id" property="id"></id>
 		<result column="period" property="period" />
 		<result column="height" property="height" />
-		<result column="bmi" property="bmi" />
 		<result column="weight" property="weight" />
+		<result column="bmi" property="bmi" />
+		<result column="fat_rate" property="fatRate" />
+		<result column="muscle_rate" property="muscleRate" />
 	</resultMap>
 
 	<insert id="insertProfile" parameterType="profile">
-		INSERT INTO profile_list VALUES (0, #{userName}, #{period}, #{height}, #{bmi}, #{weight})
+		INSERT INTO profile_list VALUES (#{id}, #{period}, #{height}, #{weight}, #{bmi}, #{fatRate}, #{muscleRate})
 	</insert>	
 
 	<update id="updateProfile" parameterType="profile">
 		UPDATE profile_list 
 		SET
-		username = #{userName},
+		id = #{id},
 		period = #{period},
 		height = #{height},
-		bmi = #{bmi},
 		weight = #{weight}
-		WHERE username = #{userName}
+		bmi = #{bmi},
+		fat_rate = #{fatRate},
+		muscle_rate = #{muscleRate},
+		WHERE id = #{id}
 	</update>
 	
 	<select id="selectOne" resultMap="profileMap" parameterType="String">
-		SELECT username, period, height, bmi, weight FROM profile_list WHERE username = #{userName}
+		SELECT id, period, height, weight, bmi, fat_rate, muscle_rate FROM profile_list WHERE id = #{id}
 	</select>
 </mapper>

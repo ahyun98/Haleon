@@ -6,24 +6,24 @@
   <mapper namespace="com.ssafy.haleon.model.dto.VideoLog">
   	<resultMap type="videoLog" id="videoMap">
 		<id column="seq" property="seq"/>
-		<result column="user_name" property="userName" />
+		<result column="id" property="id" />
 		<result column="video_id" property="videoId" />
 		<result column="view_cnt" property="viewCnt" />
 	</resultMap>
   	<insert id="insertVideoLog">
-  		INSERT INTO video_log VALUES (0, #{userName}, #{videoId}, #{viewCnt})
+  		INSERT INTO video_log VALUES (#{id}, 0, #{videoId}, #{viewCnt})
   	</insert>
   	
-  	<delete id="deleteVideoLog">
+  	<delete id="deleteVideoLog" parameterType="int">
   		DELETE FROM video_log WHERE seq = #{seq}
   	</delete>
   	
-  	<select id="selectOne">
-  		SELECT seq, user_name, video_id, view_cnt FROM seq = #{seq}
+  	<select id="selectOne" resultMap="videoMap" parameterType="int">
+  		SELECT seq, id, video_id, view_cnt FROM seq = #{seq}
   	</select>
   	
-  	<select id="selectVideoByName">
-  		SELECT seq, user_name, video_id, view_cnt FROM user_name = #{userName}
+  	<select id="selectVideoByName" resultMap="videoMap" parameterType="String">
+  		SELECT seq, id, video_id, view_cnt FROM id = #{id}
   	</select>
   	
   	<select id="selectVideoList" resultMap="videoMap">
@@ -33,5 +33,4 @@
   	<select id="selectVideoListDESC" resultMap="videoMap">
 		SELECT user_name, video_id, view_cnt FROM video_log ORDER BY view_cnt DESC	
   	</select>
-  	
   </mapper>
