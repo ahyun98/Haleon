@@ -1,6 +1,5 @@
 package com.ssafy.haleon.controller;
 
-import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ssafy.haleon.model.dto.Workout;
@@ -28,20 +26,14 @@ public class WorkoutController {
 	@Autowired
 	WorkoutService workoutService;
 	
-	@GetMapping("/workout/{regDate}")
+	@GetMapping("/workoutDate/{regDate}")
 	public ResponseEntity<Workout> detail(@PathVariable String regDate){
 		return new ResponseEntity<Workout>(workoutService.selectOne(regDate), HttpStatus.OK);
 	}
 	
-	@GetMapping("/workout")
-	public ResponseEntity<List<Workout>> list(
-			@RequestParam(defaultValue = "") String mode,
-			@RequestParam(defaultValue = "") String keyword) {
-
-		HashMap<String, String> params = new HashMap<String, String>();
-		params.put("mode", mode);
-		params.put("keyword", keyword);
-		return new ResponseEntity<List<Workout>>(workoutService.getWokroutList(params), HttpStatus.OK);
+	@GetMapping("/workoutId/{id}")
+	public ResponseEntity<List<Workout>> list(@PathVariable String id) {
+		return new ResponseEntity<List<Workout>>(workoutService.getWokroutList(id), HttpStatus.OK);
 	}
 	
 	@PostMapping("/workout")

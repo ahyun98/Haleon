@@ -14,8 +14,9 @@
 	<insert id="insertUser" parameterType="user">
 		INSERT INTO user_list VALUES(#{id}, #{pw}, #{username}, #{gender})
 	</insert>
+	
 	<select id="selectById" resultMap="userMap" parameterType="String">
-		SELECT id, pw, username FROM user_list WHERE id LIKE #{id}
+		SELECT id, pw, username, gender FROM user_list WHERE id = #{id}
 	</select>
 	
 </mapper>

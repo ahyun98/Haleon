@@ -69,7 +69,7 @@ public class CommunityBoardController {
 	@GetMapping("/communityBoard/{id}")
 	public ResponseEntity<CommunityBoard> detail(@PathVariable int id) {
 		try {
-			return new ResponseEntity<CommunityBoard>(boardService.getBoardById(id), HttpStatus.OK);
+			return new ResponseEntity<CommunityBoard>(boardService.readBoard(id), HttpStatus.OK);
 		}catch (Exception e) {
 			throw new BoardNotFoundException(id +"게시글 없음");		
 		}

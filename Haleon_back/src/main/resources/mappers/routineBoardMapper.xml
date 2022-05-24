@@ -75,7 +75,7 @@
 		weight3 = #{weight3}, 
 		weight4 = #{weight4}, 
 		weight5 = #{weight5}, 
-		wiehgt6 = #{weight6},
+		weight6 = #{weight6},
 		weight7 = #{weight7}, 
 		weight8 = #{weight8}, 
 		weight9 = #{weight9}, 
@@ -107,7 +107,7 @@
 		abs5 = #{abs5}, 
 		abs6 = #{abs6}, 
 		abs7 = #{abs7}
-		WHERE num = #{num}
+		WHERE id = #{id}
 	</update>
 	
 	<!-- 	얘 쓰려면 seq 넣어야됨.. -->

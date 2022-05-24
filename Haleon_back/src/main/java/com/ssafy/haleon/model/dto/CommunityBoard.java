@@ -2,14 +2,14 @@ package com.ssafy.haleon.model.dto;
 
 public class CommunityBoard {
 	private int num;
-	private String category;
-	private String writer;
 	private String title;
+	private String writer;
 	private String content;
-	private int viewCnt;
-	private String regDate;
 	private String fileName;
 	private String fileUri;
+	private int viewCnt;
+	private String regDate;
+	private String category;
 	
 	public CommunityBoard() {
 		super();

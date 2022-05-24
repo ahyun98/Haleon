@@ -27,9 +27,9 @@ public class ProfileController {
 
 	// 프로필 등록
 	@PostMapping("/profile")
-	public ResponseEntity<Profile> write(Profile profile) {
+	public ResponseEntity<String> write(Profile profile) {
 		profileService.writeProfile(profile);
-		return new ResponseEntity<Profile>(HttpStatus.CREATED);
+		return new ResponseEntity<String>(SUCCESS,HttpStatus.CREATED);
 	}
 
 	// 프로필 가져오기

@@ -47,7 +47,6 @@ public class RoutineBoard {
 	private int abs6;
 	private int abs7;
 	
-	
 	public int getArm6() {
 		return arm6;
 	}

@@ -1,8 +1,5 @@
 package com.ssafy.haleon.model.service;
 
-import java.util.HashMap;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,6 +30,8 @@ public class ProfileServiceImpl implements ProfileService {
 		originProfile.setHeight(profile.getHeight());
 		originProfile.setPeriod(profile.getPeriod());
 		originProfile.setWeight(profile.getWeight());
+		originProfile.setFatRate(profile.getFatRate());
+		originProfile.setMuscleRate(profile.getMuscleRate());
 		profileDao.updateProfile(originProfile);
 	}
 

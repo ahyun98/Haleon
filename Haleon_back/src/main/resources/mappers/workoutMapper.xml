@@ -5,30 +5,29 @@
 
 <mapper namespace="com.ssafy.haleon.model.dao.WorkoutDao">
 	<resultMap type="workout" id="workoutMap">
-		<id column="id" property="id" />
-		<result column="reg_date" property="regDate"/>
+		<id column="reg_date" property="regDate"/>
+		<result column="id" property="id" />
 		<result column="cal" property="cal"/>
 		<result column="burn" property="burn"/>
 		<result column="work_time" property="workTime"/>
 	</resultMap>
 
-	<select id="selectOne" parameterType="String" resultMap="workoutMap">
-		SELECT id, reg_date, cal, burn, work_time FROM workout WHERE reg_date = #{regDate}
+	<select id="selectOne" resultMap="workoutMap" parameterType="String">
+		SELECT reg_date, id, cal, burn, work_time FROM workout WHERE reg_date = #{regDate}
 	</select>
 	
 	<select id="selectList" resultMap="workoutMap" parameterType="String">
-		parameterType="java.util.HashMap">
-		SELECT id, reg_date, cal, burn, work_time
+		SELECT reg_date, id, cal, burn, work_time
 		FROM workout
 		WHERE id= #{id}
 	</select>
 	
-	<insert id="insertBoard" parameterType="communityBoard">
+	<insert id="insertWorkout" parameterType="workout">
 		INSERT INTO workout VALUES
-		(#{id}, #{regDate}, #{cal}, #{burn}, #{workTime})
+		(#{regDate}, #{id}, #{cal}, #{burn}, #{workTime})
 	</insert>
 	
-	<update id="updateBoard" parameterType="workout">
+	<update id="updateWorkout" parameterType="workout">
 		UPDATE workout
 		SET
 		cal = #{cal},
@@ -37,7 +36,7 @@
 		WHERE reg_date = #{regDate}
 	</update>
 	
-	<delete id="deleteBoard" parameterType="String">
+	<delete id="deleteWorkout" parameterType="String">
 		DELETE FROM workout WHERE reg_date = #{regDate}
 	</delete>
 

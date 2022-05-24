@@ -26,10 +26,10 @@
 		id = #{id},
 		period = #{period},
 		height = #{height},
-		weight = #{weight}
+		weight = #{weight},
 		bmi = #{bmi},
 		fat_rate = #{fatRate},
-		muscle_rate = #{muscleRate},
+		muscle_rate = #{muscleRate}
 		WHERE
 		id = #{id}
 	</update>

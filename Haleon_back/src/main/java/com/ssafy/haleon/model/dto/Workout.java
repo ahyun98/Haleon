@@ -1,11 +1,12 @@
 package com.ssafy.haleon.model.dto;
 
 public class Workout {
-	private String regDate;
 	private String id;
+	private String regDate;
 	private String cal;
 	private String burn;
 	private String workTime;
+
 	public String getRegDate() {
 		return regDate;
 	}

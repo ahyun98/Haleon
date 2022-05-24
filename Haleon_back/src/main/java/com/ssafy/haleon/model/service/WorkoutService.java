@@ -1,6 +1,5 @@
 package com.ssafy.haleon.model.service;
 
-import java.util.HashMap;
 import java.util.List;
 
 import com.ssafy.haleon.model.dto.Workout;
@@ -17,5 +16,5 @@ public interface WorkoutService {
 		Workout selectOne(String regDate);
 		
 		// 모든 운동 기록 조회
-		List<Workout> getWokroutList(HashMap<String, String> params);
+		List<Workout> getWokroutList(String id);
 }

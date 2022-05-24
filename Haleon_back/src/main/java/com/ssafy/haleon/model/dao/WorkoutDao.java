@@ -1,6 +1,5 @@
 package com.ssafy.haleon.model.dao;
 
-import java.util.HashMap;
 import java.util.List;
 
 import com.ssafy.haleon.model.dto.Workout;
@@ -13,5 +12,5 @@ public interface WorkoutDao {
 	//게시글 읽기
 	Workout selectOne(String regDate);
 	//게시글 목록 불러오기
-	List<Workout> selectList(HashMap<String, String> params);
+	List<Workout> selectList(String id);
 }

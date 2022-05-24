@@ -1,6 +1,5 @@
 package com.ssafy.haleon.model.service;
 
-import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,8 +30,8 @@ public class WokroutServiceImpl implements WorkoutService {
 	}
 
 	@Override
-	public List<Workout> getWokroutList(HashMap<String, String> params) {
-		return workoutDao.selectList(params);
+	public List<Workout> getWokroutList(String id) {
+		return workoutDao.selectList(id);
 	}
 
 }
