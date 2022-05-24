@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ssafy.haleon.model.dto.User;
@@ -30,17 +31,18 @@ public class UserController {
 
 	// 회원 등록
 	@PostMapping("/user")
-	public ResponseEntity<User> join(User user) throws Exception {
+	public ResponseEntity<String> join(User user) throws Exception {
 		if (user != null) {
 			// Dao단에서 user 중복 체크가 이루어짐. 여기서 그래서 따로 안함
 			User u = user;
 			String jwtPw = jwtUtil.createToken("pw", user.getPw());
 			u.setId(u.getId());
 			u.setPw(jwtPw);
+			u.setUsername(user.getUsername());
 			userService.join(u);
-			return new ResponseEntity<User>(HttpStatus.CREATED);
+			return new ResponseEntity<String>(jwtUtil.createToken("access-token", user.getId()), HttpStatus.OK);
 		} else
-			return new ResponseEntity<User>(HttpStatus.NO_CONTENT);
+			return new ResponseEntity<String>(HttpStatus.NO_CONTENT);
 	}
 
 	// 로그인 기능 (회원 조회)

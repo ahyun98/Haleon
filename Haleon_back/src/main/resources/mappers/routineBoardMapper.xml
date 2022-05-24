@@ -4,33 +4,114 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ssafy.haleon.model.dao.RoutineBoardDao">
 	<resultMap type="routineBoard" id="routineBoardMap">
-		<id column="num" property="num"/>
-		<result column="title" property="title"/>
-		<result column="writer" property="writer"/>
-		<result column="content" property="content"/>
-		<result column="file_name" property="fileName"/>
-		<result column="file_uri" property="fileUri"/>
-		<result column="view_cnt" property="viewCnt"/>
+		<id column="id" property="id"/>
 		<result column="reg_date" property="regDate"/>
+		<result column="num" property="num"/>
+		<result column="card1" property="card1"/>
+		<result column="card2" property="card2"/>
+		<result column="card3" property="card3"/>
+		<result column="card4" property="card4"/>
+		<result column="card5" property="card5"/>
+		<result column="weight1" property="weight1"/>
+		<result column="weight2" property="weight2"/>
+		<result column="weight3" property="weight3"/>
+		<result column="weight4" property="weight4"/>
+		<result column="weight5" property="weight5"/>
+		<result column="weight6" property="weight6"/>
+		<result column="weight7" property="weight7"/>
+		<result column="weight8" property="weight8"/>
+		<result column="weight9" property="weight9"/>
+		<result column="chest1" property="chest1"/>
+		<result column="chest2" property="chest2"/>
+		<result column="chest3" property="chest3"/>
+		<result column="chest4" property="chest4"/>
+		<result column="back1" property="back1"/>
+		<result column="back2" property="back2"/>
+		<result column="back3" property="back3"/>
+		<result column="back4" property="back4"/>
+		<result column="back5" property="back5"/>
+		<result column="shoul1" property="shoul1"/>
+		<result column="shoul2" property="shoul2"/>
+		<result column="shoul3" property="shoul3"/>
+		<result column="shoul4" property="shoul4"/>
+		<result column="shoul5" property="shoul5"/>
+		<result column="shoul6" property="shoul6"/>
+		<result column="arm1" property="arm1"/>
+		<result column="arm2" property="arm2"/>
+		<result column="arm3" property="arm3"/>
+		<result column="arm4" property="arm4"/>
+		<result column="arm5" property="arm5"/>
+		<result column="arm6" property="arm6"/>
+		<result column="abs1" property="abs1"/>
+		<result column="abs2" property="abs2"/>
+		<result column="abs3" property="abs3"/>
+		<result column="abs4" property="abs4"/>
+		<result column="abs5" property="abs5"/>
+		<result column="abs6" property="abs6"/>
+		<result column="abs7" property="abs7"/>		
 	</resultMap>
 
 	<insert id="routineInsertBoard" parameterType="routineBoard">
 		INSERT INTO RoutineBoard VALUES
-		(0, #{title}, #{writer}, #{content}, #{fileName}, #{fileUri}, #{viewCnt}, now())
+		(#{id}, now(), 0, #{card1}, #{card2}, #{card3}, #{card4}, #{card5}, 
+		#{weight1}, #{weight2}, #{weight3}, #{weight4}, #{weight5}, #{weight6},
+		#{weight7}, #{weight8}, #{weight9}, #{chest1}, #{chest2}, #{chest3},
+		#{chest4}, #{back1}, #{back2}, #{back3}, #{back4}, #{back5},
+		#{shoul1}, #{shoul2}, #{shoul3}, #{shoul4}, #{shoul5}, #{shoul6},
+		#{arm1}, #{arm2}, #{arm3}, #{arm4}, #{arm5}, #{arm6},
+		#{abs1}, #{abs2}, #{abs3}, #{abs4}, #{abs5}, #{abs6}, #{abs7})
 	</insert>
 	
 	<update id="routineUpdateBoard" parameterType="routineBoard">
 		UPDATE RoutineBoard
 		SET
-		title = #{title},
-		writer = #{writer},
-		content = #{content},
-		file_name = #{fileName},
-		file_uri = #{fileUri},
-		view_cnt = #{viewCnt}
+		reg_date = #{regDate}, 
+		card1 = #{card1}, 
+		card2 = #{card2}, 
+		card3 = #{card3}, 
+		card4 = #{card4}, 
+		card5 = #{card5}, 
+		weight1 = #{weight1}, 
+		weight2 = #{weight2}, 
+		weight3 = #{weight3}, 
+		weight4 = #{weight4}, 
+		weight5 = #{weight5}, 
+		wiehgt6 = #{weight6},
+		weight7 = #{weight7}, 
+		weight8 = #{weight8}, 
+		weight9 = #{weight9}, 
+		chest1 = #{chest1}, 
+		chest2 = #{chest2}, 
+		chest3 = #{chest3},
+		chest4 = #{chest4}, 
+		back1 = #{back1}, 
+		back2 = #{back2}, 
+		back3 = #{back3}, 
+		back4 = #{back4}, 
+		back5 = #{back5},
+		shoul1 = #{shoul1}, 
+		shoul2 = #{shoul2}, 
+		shoul3 = #{shoul3}, 
+		shoul4 = #{shoul4}, 
+		shoul5 = #{shoul5}, 
+		shoul6 = #{shoul6},
+		arm1 = #{arm1}, 
+		arm2 = #{arm2}, 
+		arm3 = #{arm3}, 
+		arm4 = #{arm4}, 
+		arm5 = #{arm5}, 
+		arm6 = #{arm6},
+		abs1 = #{abs1}, 
+		abs2 = #{abs2}, 
+		abs3 = #{abs3}, 
+		abs4 = #{abs4}, 
+		abs5 = #{abs5}, 
+		abs6 = #{abs6}, 
+		abs7 = #{abs7}
 		WHERE id = #{id}
 	</update>
 	
+<!-- 	얘 쓰려면 seq 넣어야됨.. -->
 	<delete id="routineDeleteBoard" parameterType="int">
 		DELETE FROM RoutineBoard WHERE num = #{num}
 	</delete>

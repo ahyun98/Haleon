@@ -31,8 +31,25 @@ public class RoutineBoardController {
 	@Autowired
 	private RoutineBoardService boardService;
 
-	@GetMapping("/routineBoard")
-	public ResponseEntity<List<RoutineBoard>> list(@RequestParam(defaultValue = "") String mode,
+	@GetMapping("/routine/{num}")
+	public ResponseEntity<RoutineBoard> detail(@PathVariable int num){
+		try{
+			return new ResponseEntity<RoutineBoard>(boardService.routineGetBoardById(num), HttpStatus.OK);
+		}
+		catch (Exception e){
+			throw new BoardNotFoundException(num +"루틴 없음");
+		}
+	}
+	
+	@PostMapping("/routine")
+	public ResponseEntity<String> insert(RoutineBoard routineBoard){
+		boardService.routineWriteBoard(routineBoard);
+		return new ResponseEntity<String>(HttpStatus.OK);
+	}
+	
+	@GetMapping("/routine")
+	public ResponseEntity<List<RoutineBoard>> list(
+			@RequestParam(defaultValue = "") String mode,
 			@RequestParam(defaultValue = "") String keyword) {
 
 		HashMap<String, String> params = new HashMap<String, String>();
@@ -41,34 +58,6 @@ public class RoutineBoardController {
 		return new ResponseEntity<List<RoutineBoard>>(boardService.routineGetBoardList(params), HttpStatus.OK);
 	}
 	
-	@PostMapping("/routineBoard")
-	public ResponseEntity<String> write(RoutineBoard board){
-		boardService.routineWriteBoard(board);
-		return new ResponseEntity<String>(SUCCESS, HttpStatus.CREATED);
-	}
-	
-	@PutMapping("/routineBoard")
-	public ResponseEntity<String> update(RoutineBoard board){
-		boardService.routineModifyBoard(board); //결과 boolean 이니까 가져다가 써도 좋다.
-		return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
-	}
-
-	@GetMapping("/routineBoard/{num}")
-	public ResponseEntity<RoutineBoard> detail(@PathVariable int num) {
-		try {
-			return new ResponseEntity<RoutineBoard>(boardService.routineGetBoardById(num), HttpStatus.OK);
-		}catch (Exception e) {
-			throw new BoardNotFoundException(num +"번 게시글은 없습니다.");		
-		}
-	}
-	
-	@DeleteMapping("/routineBoard/{id}")
-	public ResponseEntity<String> delete(@PathVariable int id){
-		if(boardService.routineDeleteBoard(id)) {
-			return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
-		}
-		return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
-	}
 }
 
 
