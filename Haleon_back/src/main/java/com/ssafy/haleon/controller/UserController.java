@@ -28,7 +28,7 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
-
+	
 	// 회원 등록
 	@PostMapping("/user")
 	public ResponseEntity<String> join(User user) throws Exception {
@@ -39,21 +39,22 @@ public class UserController {
 			u.setId(u.getId());
 			u.setPw(jwtPw);
 			u.setUsername(user.getUsername());
+			u.setGender(user.getGender());
 			userService.join(u);
-			return new ResponseEntity<String>(jwtUtil.createToken("access-token", user.getId()), HttpStatus.OK);
+			return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
 		} else
 			return new ResponseEntity<String>(HttpStatus.NO_CONTENT);
 	}
 
 	// 로그인 기능 (회원 조회)
 	@PostMapping("/login")
-	public ResponseEntity<User> login(String id, String pw) throws Exception {
+	public ResponseEntity<String> login(String id, String pw) throws Exception {
 		User u = userService.selectUserById(id);
 		String jwtPw = jwtUtil.createToken("pw", pw);
 
 		if (u.getPw().equals(jwtPw)) {
-			return new ResponseEntity<User>(HttpStatus.OK);
+			return new ResponseEntity<String>(jwtUtil.createToken("access-token", id),HttpStatus.OK);
 		} else
-			return new ResponseEntity<User>(HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
 	}
 }

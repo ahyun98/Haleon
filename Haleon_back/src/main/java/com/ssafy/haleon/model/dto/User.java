@@ -1,15 +1,16 @@
 package com.ssafy.haleon.model.dto;
 
 public class User {
-	private int seq;
 	private String id;
 	private String pw;
 	private String username;
-	public int getSeq() {
-		return seq;
+	private String gender;
+	
+	public String getGender() {
+		return gender;
 	}
-	public void setSeq(int seq) {
-		this.seq = seq;
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
 	public String getId() {
 		return id;
