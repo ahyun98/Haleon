@@ -1,6 +1,5 @@
 package com.ssafy.haleon.model.dao;
 
-import java.util.HashMap;
 import java.util.List;
 
 import com.ssafy.haleon.model.dto.VideoLog;

@@ -3,15 +3,15 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-  <mapper namespace="com.ssafy.haleon.model.dto.VideoLog">
+  <mapper namespace="com.ssafy.haleon.model.dao.VideoLogDao">
   	<resultMap type="videoLog" id="videoMap">
 		<id column="seq" property="seq"/>
-		<result column="id" property="id" />
+		<id column="id" property="id" />
 		<result column="video_id" property="videoId" />
 		<result column="view_cnt" property="viewCnt" />
 	</resultMap>
   	<insert id="insertVideoLog">
-  		INSERT INTO video_log VALUES (#{id}, 0, #{videoId}, #{viewCnt})
+  		INSERT INTO video_log VALUES (0, #{id}, #{videoId}, #{viewCnt})
   	</insert>
   	
   	<delete id="deleteVideoLog" parameterType="int">
@@ -27,10 +27,10 @@
   	</select>
   	
   	<select id="selectVideoList" resultMap="videoMap">
-		SELECT user_name, video_id, view_cnt FROM video_log  	
+		SELECT id, video_id, view_cnt FROM video_log  	
   	</select>
   
   	<select id="selectVideoListDESC" resultMap="videoMap">
-		SELECT user_name, video_id, view_cnt FROM video_log ORDER BY view_cnt DESC	
+		SELECT id, video_id, view_cnt FROM video_log ORDER BY view_cnt DESC	
   	</select>
   </mapper>
