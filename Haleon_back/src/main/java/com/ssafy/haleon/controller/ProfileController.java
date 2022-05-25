@@ -56,8 +56,8 @@ public class ProfileController {
 	
 	//프로필에 해당하는 유저 정보 가져오기
 	@GetMapping("/profileUser/{id}")
-	public ResponseEntity<User> profileUser(@PathVariable String id){
+	public ResponseEntity<String> profileUser(@PathVariable String id){
 		User u = userService.selectUserById(id);
-		return new ResponseEntity<User>(u, HttpStatus.OK);
+		return new ResponseEntity<String>(u.getUsername(), HttpStatus.OK);
 	}
 }
