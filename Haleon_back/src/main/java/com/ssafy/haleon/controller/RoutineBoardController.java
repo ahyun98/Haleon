@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ssafy.haleon.exception.BoardNotFoundException;
 import com.ssafy.haleon.model.dto.CommunityBoard;
+import com.ssafy.haleon.model.dto.Profile;
 import com.ssafy.haleon.model.dto.RoutineBoard;
+import com.ssafy.haleon.model.service.ProfileService;
 import com.ssafy.haleon.model.service.RoutineBoardService;
 
 @RestController
@@ -30,6 +32,9 @@ public class RoutineBoardController {
 	@Autowired
 	private RoutineBoardService boardService;
 
+	@Autowired
+	private ProfileService profileService;
+	
 	@GetMapping("/routine")
 	public ResponseEntity<RoutineBoard> detail(
 			@RequestParam(defaultValue = "") String id,
@@ -52,6 +57,10 @@ public class RoutineBoardController {
 		
 		if(curRoutine == null) {
 			boardService.routineWriteBoard(routineBoard);
+			int period = boardService.routineCnt(routineBoard.getId());
+			Profile profile = profileService.selectOne(routineBoard.getId());
+			profile.setPeriod(period);
+			profileService.modifyProfile(profile);
 			return new ResponseEntity<String>("SUCCESS",HttpStatus.OK);
 		}
 		else
