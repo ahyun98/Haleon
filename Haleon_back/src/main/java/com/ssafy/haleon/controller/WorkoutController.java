@@ -42,7 +42,7 @@ public class WorkoutController {
 			workoutService.insertWorkout(workout);
 			return new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
 		} else
-			return new ResponseEntity<String>("Not Good Access", HttpStatus.NOT_ACCEPTABLE);
+			return new ResponseEntity<String>("Modify Required", HttpStatus.OK);
 	}
 
 	@PutMapping("/workout")
