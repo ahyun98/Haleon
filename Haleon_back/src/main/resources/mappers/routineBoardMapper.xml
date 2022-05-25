@@ -115,7 +115,7 @@
 		DELETE FROM exercise WHERE num = #{num}
 	</delete>
 
-	<select id="routineSelectOne" resultMap="routineBoardMap" parameterType="routineBoard">
+	<select id="routineSelectOne" resultMap="routineBoardMap" parameterType="java.util.HashMap">
 		SELECT *
 		FROM exercise
 		WHERE id = #{id} AND reg_date = #{regDate}

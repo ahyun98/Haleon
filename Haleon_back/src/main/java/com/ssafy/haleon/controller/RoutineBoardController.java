@@ -1,5 +1,6 @@
 package com.ssafy.haleon.controller;
 
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -11,9 +12,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ssafy.haleon.exception.BoardNotFoundException;
+import com.ssafy.haleon.model.dto.CommunityBoard;
 import com.ssafy.haleon.model.dto.RoutineBoard;
 import com.ssafy.haleon.model.service.RoutineBoardService;
 
@@ -28,13 +31,14 @@ public class RoutineBoardController {
 	private RoutineBoardService boardService;
 
 	@GetMapping("/routine")
-	public ResponseEntity<RoutineBoard> detail(RoutineBoard routineBoard){
-		try{
-			return new ResponseEntity<RoutineBoard>(boardService.routineGetBoard(routineBoard), HttpStatus.OK);
-		}
-		catch (Exception e){
-			throw new BoardNotFoundException(routineBoard.getId() +"루틴 없음");
-		}
+	public ResponseEntity<RoutineBoard> detail(
+			@RequestParam(defaultValue = "") String id,
+			@RequestParam(defaultValue = "") String regDate) {
+
+		HashMap<String, String> params = new HashMap<String, String>();
+		params.put("id", id);
+		params.put("regDate", regDate);
+		return new ResponseEntity<RoutineBoard>(boardService.routineGetBoard(params), HttpStatus.OK);
 	}
 	
 	@PostMapping("/routine")

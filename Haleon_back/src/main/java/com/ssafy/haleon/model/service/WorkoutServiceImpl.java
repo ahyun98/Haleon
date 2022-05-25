@@ -1,5 +1,6 @@
 package com.ssafy.haleon.model.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +10,7 @@ import com.ssafy.haleon.model.dao.WorkoutDao;
 import com.ssafy.haleon.model.dto.Workout;
 
 @Service
-public class WokroutServiceImpl implements WorkoutService {
+public class WorkoutServiceImpl implements WorkoutService {
 
 	@Autowired
 	WorkoutDao workoutDao;
@@ -20,13 +21,13 @@ public class WokroutServiceImpl implements WorkoutService {
 	}
 
 	@Override
-	public void deleteWorkout(String regDate) {
-		workoutDao.deleteWorkout(regDate);
+	public void deleteWorkout(HashMap<String, String> params) {
+		workoutDao.deleteWorkout(params);
 	}
 
 	@Override
-	public Workout selectOne(Workout workout) {
-		return workoutDao.selectOne(workout);
+	public Workout selectOne(HashMap<String, String> params) {
+		return workoutDao.selectOne(params);
 	}
 
 	@Override

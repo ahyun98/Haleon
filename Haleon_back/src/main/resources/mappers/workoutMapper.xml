@@ -12,8 +12,8 @@
 		<result column="work_time" property="workTime"/>
 	</resultMap>
 
-	<select id="selectOne" resultMap="workoutMap" parameterType="workout">
-		SELECT reg_date, id, cal, burn, work_time FROM workout WHERE reg_date = #{regDate} AND id = #{id}
+	<select id="selectOne" resultMap="workoutMap" parameterType="java.util.HashMap">
+		SELECT reg_date, id, cal, burn, work_time FROM workout WHERE reg_Date = #{regDate} AND id = #{id}
 	</select>
 	
 	<select id="selectOneByIdDate" resultMap="workoutMap" parameterType="workout">
@@ -40,8 +40,8 @@
 		WHERE reg_date = #{regDate}
 	</update>
 	
-	<delete id="deleteWorkout" parameterType="String">
-		DELETE FROM workout WHERE reg_date = #{regDate}
+	<delete id="deleteWorkout" parameterType="java.util.HashMap">
+		DELETE FROM workout WHERE reg_date = #{regDate} AND id = #{id}
 	</delete>
 
 	
