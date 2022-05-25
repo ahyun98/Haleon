@@ -43,8 +43,20 @@ public class RoutineBoardController {
 	
 	@PostMapping("/routine")
 	public ResponseEntity<String> insert(RoutineBoard routineBoard){
-		boardService.routineWriteBoard(routineBoard);
-		return new ResponseEntity<String>(HttpStatus.OK);
+		String curId = routineBoard.getId();
+		String curRegDate = routineBoard.getRegDate();
+		HashMap<String, String> params = new HashMap<String, String>();
+		params.put("id", curId);
+		params.put("regDate", curRegDate);
+		RoutineBoard curRoutine = boardService.routineGetBoard(params);
+		
+		if(curRoutine == null) {
+			boardService.routineWriteBoard(routineBoard);
+			return new ResponseEntity<String>("SUCCESS",HttpStatus.OK);
+		}
+		else
+			return new ResponseEntity<String>("Already registered", HttpStatus.OK);
+		
 	}
 	
 	@GetMapping("/routine/{id}")

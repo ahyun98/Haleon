@@ -11,7 +11,7 @@ public interface VideoLogDao {
 	void deleteVideoLog(int seq);
 	VideoLog selectOne(int seq);
 	
-	VideoLog selectVideoByName(String username);
+	VideoLog selectVideoByName(String id);
 	//시청 기록 목록 불러오기
 	List<VideoLog> selectVideoList();
 	//시청 기록 목록 조회수 내림차순
