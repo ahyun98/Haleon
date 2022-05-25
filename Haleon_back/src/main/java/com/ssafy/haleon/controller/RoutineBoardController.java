@@ -27,13 +27,13 @@ public class RoutineBoardController {
 	@Autowired
 	private RoutineBoardService boardService;
 
-	@GetMapping("/routine/{num}")
-	public ResponseEntity<RoutineBoard> detail(@PathVariable int num){
+	@GetMapping("/routine")
+	public ResponseEntity<RoutineBoard> detail(RoutineBoard routineBoard){
 		try{
-			return new ResponseEntity<RoutineBoard>(boardService.routineGetBoardById(num), HttpStatus.OK);
+			return new ResponseEntity<RoutineBoard>(boardService.routineGetBoard(routineBoard), HttpStatus.OK);
 		}
 		catch (Exception e){
-			throw new BoardNotFoundException(num +"루틴 없음");
+			throw new BoardNotFoundException(routineBoard.getId() +"루틴 없음");
 		}
 	}
 	

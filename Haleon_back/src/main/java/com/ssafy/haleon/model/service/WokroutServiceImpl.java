@@ -25,8 +25,8 @@ public class WokroutServiceImpl implements WorkoutService {
 	}
 
 	@Override
-	public Workout selectOne(String regDate) {
-		return workoutDao.selectOne(regDate);
+	public Workout selectOne(Workout workout) {
+		return workoutDao.selectOne(workout);
 	}
 
 	@Override

@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -56,5 +57,11 @@ public class UserController {
 			return new ResponseEntity<String>(jwtUtil.createToken("access-token", id),HttpStatus.OK);
 		} else
 			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+	}
+	
+	//유저 id로 가져오기
+	@GetMapping("/user/{id}")
+	public ResponseEntity<User> getUserById(@PathVariable String id){
+		return new ResponseEntity<User>(userService.selectUserById(id), HttpStatus.OK);
 	}
 }

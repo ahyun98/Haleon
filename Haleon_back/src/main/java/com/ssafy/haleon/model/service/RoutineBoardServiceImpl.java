@@ -25,8 +25,8 @@ public class RoutineBoardServiceImpl implements RoutineBoardService {
 	}
 
 	@Override
-	public RoutineBoard routineGetBoardById(int num) {
-		return routineBoardDao.routineSelectOne(num);
+	public RoutineBoard routineGetBoard(RoutineBoard routineBoard) {
+		return routineBoardDao.routineSelectOne(routineBoard);
 	}
 
 	@Override

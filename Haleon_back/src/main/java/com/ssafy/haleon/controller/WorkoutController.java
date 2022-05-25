@@ -26,12 +26,12 @@ public class WorkoutController {
 	@Autowired
 	WorkoutService workoutService;
 
-	@GetMapping("/workoutDate/{regDate}")
-	public ResponseEntity<Workout> detail(@PathVariable String regDate) {
-		return new ResponseEntity<Workout>(workoutService.selectOne(regDate), HttpStatus.OK);
+	@GetMapping("/workout")
+	public ResponseEntity<Workout> detail(Workout workout) {
+		return new ResponseEntity<Workout>(workoutService.selectOne(workout), HttpStatus.OK);
 	}
 
-	@GetMapping("/workoutId/{id}")
+	@GetMapping("/workout/{id}")
 	public ResponseEntity<List<Workout>> list(@PathVariable String id) {
 		return new ResponseEntity<List<Workout>>(workoutService.getWokroutList(id), HttpStatus.OK);
 	}
@@ -47,7 +47,7 @@ public class WorkoutController {
 
 	@PutMapping("/workout")
 	public ResponseEntity<Workout> modify(Workout workout) {
-		Workout origin = workoutService.selectOne(workout.getRegDate());
+		Workout origin = workoutService.selectOne(workout);
 		origin.setBurn(workout.getBurn());
 		origin.setCal(workout.getCal());
 		origin.setWorkTime(workout.getWorkTime());

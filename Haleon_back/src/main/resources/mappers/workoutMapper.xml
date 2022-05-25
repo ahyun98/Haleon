@@ -12,8 +12,8 @@
 		<result column="work_time" property="workTime"/>
 	</resultMap>
 
-	<select id="selectOne" resultMap="workoutMap" parameterType="String">
-		SELECT reg_date, id, cal, burn, work_time FROM workout WHERE reg_date = #{regDate}
+	<select id="selectOne" resultMap="workoutMap" parameterType="workout">
+		SELECT reg_date, id, cal, burn, work_time FROM workout WHERE reg_date = #{regDate} AND id = #{id}
 	</select>
 	
 	<select id="selectOneByIdDate" resultMap="workoutMap" parameterType="workout">

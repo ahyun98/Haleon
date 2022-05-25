@@ -107,7 +107,7 @@
 		abs5 = #{abs5}, 
 		abs6 = #{abs6}, 
 		abs7 = #{abs7}
-		WHERE id = #{id}
+		WHERE id = #{id} AND reg_date = #{regDate}
 	</update>
 	
 	<!-- 	얘 쓰려면 seq 넣어야됨.. -->
@@ -115,10 +115,10 @@
 		DELETE FROM exercise WHERE num = #{num}
 	</delete>
 
-	<select id="routineSelectOne" resultMap="routineBoardMap" parameterType="int">
+	<select id="routineSelectOne" resultMap="routineBoardMap" parameterType="routineBoard">
 		SELECT *
 		FROM exercise
-		WHERE num = #{num}
+		WHERE id = #{id} AND reg_date = #{regDate}
 	</select>
 
 	<select id="routineSelectList" resultMap="routineBoardMap"

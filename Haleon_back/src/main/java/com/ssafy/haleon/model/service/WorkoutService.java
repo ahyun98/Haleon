@@ -13,7 +13,7 @@ public interface WorkoutService {
 		void deleteWorkout(String regDate);
 		
 		// 운동 기록 반환
-		Workout selectOne(String regDate);
+		Workout selectOne(Workout workout);
 		
 		// 모든 운동 기록 조회
 		List<Workout> getWokroutList(String id);

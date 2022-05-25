@@ -10,7 +10,7 @@ public interface WorkoutDao {
 	void insertWorkout(Workout workout);
 	
 	//게시글 읽기
-	Workout selectOne(String regDate);
+	Workout selectOne(Workout workout);
 	//
 	Workout selectOneByIdDate(Workout workout);
 	//게시글 목록 불러오기
