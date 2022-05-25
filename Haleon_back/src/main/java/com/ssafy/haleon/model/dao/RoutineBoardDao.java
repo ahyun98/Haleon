@@ -10,4 +10,5 @@ public interface RoutineBoardDao {
 	int routineDeleteBoard(int num);
 	RoutineBoard routineSelectOne(int num);
 	List<RoutineBoard> routineSelectList(String id);
+	int routineCnt(String id);
 }

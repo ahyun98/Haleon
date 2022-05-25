@@ -127,4 +127,8 @@
 		FROM exercise
 		WHERE id = #{id}
 	</select>
+	
+	<select id="routineCnt" parameterType="String" resultType="int">
+		SELECT COUNT(reg_date) FROM exercise WHERE id = #{id}
+	</select>
 </mapper>

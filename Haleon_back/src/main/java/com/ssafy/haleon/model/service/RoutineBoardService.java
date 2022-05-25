@@ -10,4 +10,5 @@ public interface RoutineBoardService {
 	void routineModifyBoard(RoutineBoard routineBoard);
 	RoutineBoard routineGetBoardById(int num);
 	List<RoutineBoard> routineGetBoardList(String id);
+	int routineCnt(String id);
 }

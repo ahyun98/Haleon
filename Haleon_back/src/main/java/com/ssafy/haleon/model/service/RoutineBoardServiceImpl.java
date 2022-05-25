@@ -38,5 +38,10 @@ public class RoutineBoardServiceImpl implements RoutineBoardService {
 	public void routineModifyBoard(RoutineBoard routineBoard) {
 		routineBoardDao.routineUpdateBoard(routineBoard);
 	}
+
+	@Override
+	public int routineCnt(String id) {
+		return routineBoardDao.routineCnt(id);
+	}
 	
 }
