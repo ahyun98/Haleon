@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ssafy.haleon.exception.ProfileNotFoundException;
 import com.ssafy.haleon.model.dto.Profile;
+import com.ssafy.haleon.model.dto.User;
 import com.ssafy.haleon.model.service.ProfileService;
+import com.ssafy.haleon.model.service.UserService;
 
 @RestController
 @RequestMapping("/api")
@@ -24,6 +26,9 @@ public class ProfileController {
 
 	@Autowired
 	private ProfileService profileService;
+	
+	@Autowired
+	private UserService userService;
 
 	// 프로필 등록
 	@PostMapping("/profile")
@@ -49,4 +54,10 @@ public class ProfileController {
 		return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
 	}
 	
+	//프로필에 해당하는 유저 정보 가져오기
+	@GetMapping("/profileUser/{id}")
+	public ResponseEntity<User> profileUser(@PathVariable String id){
+		User u = userService.selectUserById(id);
+		return new ResponseEntity<User>(u, HttpStatus.OK);
+	}
 }
