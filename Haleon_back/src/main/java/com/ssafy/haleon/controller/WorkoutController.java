@@ -22,41 +22,43 @@ public class WorkoutController {
 
 	private static final String SUCCESS = "success";
 	private static final String FAIL = "fail";
-	
+
 	@Autowired
 	WorkoutService workoutService;
-	
+
 	@GetMapping("/workoutDate/{regDate}")
-	public ResponseEntity<Workout> detail(@PathVariable String regDate){
+	public ResponseEntity<Workout> detail(@PathVariable String regDate) {
 		return new ResponseEntity<Workout>(workoutService.selectOne(regDate), HttpStatus.OK);
 	}
-	
+
 	@GetMapping("/workoutId/{id}")
 	public ResponseEntity<List<Workout>> list(@PathVariable String id) {
 		return new ResponseEntity<List<Workout>>(workoutService.getWokroutList(id), HttpStatus.OK);
 	}
-	
+
 	@PostMapping("/workout")
-	public ResponseEntity<String> insert(Workout workout){
-		workoutService.insertWorkout(workout);
-		return new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
+	public ResponseEntity<String> insert(Workout workout) {
+		if (workoutService.isRegistered(workout)) {
+			workoutService.insertWorkout(workout);
+			return new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
+		} else
+			return new ResponseEntity<String>("Not Good Access", HttpStatus.NOT_ACCEPTABLE);
 	}
-	
+
 	@PutMapping("/workout")
-	public ResponseEntity<Workout> modify(Workout workout){
+	public ResponseEntity<Workout> modify(Workout workout) {
 		Workout origin = workoutService.selectOne(workout.getRegDate());
 		origin.setBurn(workout.getBurn());
 		origin.setCal(workout.getCal());
 		origin.setWorkTime(workout.getWorkTime());
-		
+
 		return new ResponseEntity<Workout>(origin, HttpStatus.OK);
 	}
-	
+
 	@DeleteMapping("/workout/{regDate}")
-	public ResponseEntity<String> delete(String regDate){
+	public ResponseEntity<String> delete(String regDate) {
 		workoutService.deleteWorkout(regDate);
 		return new ResponseEntity<String>("DELETION COMPELTE", HttpStatus.OK);
 	}
-	
-	
+
 }

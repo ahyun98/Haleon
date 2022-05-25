@@ -11,6 +11,8 @@ public interface WorkoutDao {
 	
 	//게시글 읽기
 	Workout selectOne(String regDate);
+	//
+	Workout selectOneByIdDate(Workout workout);
 	//게시글 목록 불러오기
 	List<Workout> selectList(String id);
 }

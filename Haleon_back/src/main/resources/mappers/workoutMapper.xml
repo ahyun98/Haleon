@@ -16,6 +16,10 @@
 		SELECT reg_date, id, cal, burn, work_time FROM workout WHERE reg_date = #{regDate}
 	</select>
 	
+	<select id="selectOneByIdDate" resultMap="workoutMap" parameterType="workout">
+		SELECT reg_date, id, cal, burn, work_time FROM workout WHERE id = #{id} AND reg_date = #{regDate}
+	</select>
+	
 	<select id="selectList" resultMap="workoutMap" parameterType="String">
 		SELECT reg_date, id, cal, burn, work_time
 		FROM workout

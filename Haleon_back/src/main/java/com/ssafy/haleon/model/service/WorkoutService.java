@@ -17,4 +17,6 @@ public interface WorkoutService {
 		
 		// 모든 운동 기록 조회
 		List<Workout> getWokroutList(String id);
+		
+		boolean isRegistered(Workout workout);
 }

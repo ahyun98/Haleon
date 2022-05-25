@@ -34,4 +34,13 @@ public class WokroutServiceImpl implements WorkoutService {
 		return workoutDao.selectList(id);
 	}
 
+	@Override
+	public boolean isRegistered(Workout workout) {
+		Workout cur = workoutDao.selectOneByIdDate(workout);
+		if(cur == null)
+			return true;
+		else
+			return false;
+	}
+
 }
