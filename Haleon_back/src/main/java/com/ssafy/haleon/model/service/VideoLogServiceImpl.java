@@ -16,20 +16,21 @@ public class VideoLogServiceImpl implements VideoLogService {
 	VideoLogDao videoLogDao;
 	
 	@Override
-	public void insertVideoLog(VideoLog videoLog) {
-		videoLogDao.insertVideoLog(videoLog);
+	public void insertVideoLog(HashMap<String, String> params) {
+		videoLogDao.insertVideoLog(params);
 	}
 
 	@Override
-	public boolean deleteVideoLog(int seq) {
-		videoLogDao.deleteVideoLog(seq);
+	public boolean deleteVideoLog(HashMap<String, String> params) {
+		videoLogDao.deleteVideoLog(params);
 		return true;
 	}
 
 	@Override
-	public void updateCnt(int seq) {
-		VideoLog vl = videoLogDao.selectOne(seq);
+	public void updateCnt(HashMap<String, String> params) {
+		VideoLog vl = videoLogDao.selectOne(params);
 		vl.setViewCnt(vl.getViewCnt()+1);
+		videoLogDao.modifyVideoLog(vl);
 	}
 
 	@Override
@@ -43,13 +44,13 @@ public class VideoLogServiceImpl implements VideoLogService {
 	}
 
 	@Override
-	public VideoLog selectOne(int seq) {
-		return videoLogDao.selectOne(seq);
+	public VideoLog selectOne(HashMap<String, String> params) {
+		return videoLogDao.selectOne(params);
 	}
 
 	@Override
-	public VideoLog selectOneByName(String name) {
-		return videoLogDao.selectVideoByName(name);
+	public List<VideoLog> selectOneByName(String id) {
+		return videoLogDao.selectVideoByName(id);
 	}
 
 }

@@ -10,20 +10,30 @@
 		<result column="video_id" property="videoId" />
 		<result column="view_cnt" property="viewCnt" />
 	</resultMap>
-  	<insert id="insertVideoLog">
-  		INSERT INTO video_log VALUES (0, #{id}, #{videoId}, #{viewCnt})
+	
+  	<insert id="insertVideoLog" parameterType="java.util.HashMap">
+  		INSERT INTO video_log VALUES (0, #{id}, #{videoId}, 0)
   	</insert>
   	
-  	<delete id="deleteVideoLog" parameterType="int">
-  		DELETE FROM video_log WHERE seq = #{seq}
+  	<update id="modifyVideoLog" parameterType="videoLog">
+  		UPDATE video_log
+  		SET
+  		video_id = #{videoId},
+  		view_cnt = #{viewCnt}
+  		WHERE
+  		id = #{id} AND video_id = #{videoId}
+  	</update>
+  	
+  	<delete id="deleteVideoLog" parameterType="java.util.HashMap">
+  		DELETE FROM video_log WHERE id = #{id} AND video_id = #{videoId}
   	</delete>
   	
-  	<select id="selectOne" resultMap="videoMap" parameterType="int">
-  		SELECT seq, id, video_id, view_cnt FROM seq = #{seq}
+  	<select id="selectOne" resultMap="videoMap" parameterType="java.util.HashMap">
+  		SELECT seq, id, video_id, view_cnt FROM video_log WHERE id = #{id} AND video_id = #{videoId}
   	</select>
   	
   	<select id="selectVideoByName" resultMap="videoMap" parameterType="String">
-  		SELECT seq, id, video_id, view_cnt FROM id = #{id}
+  		SELECT seq, id, video_id, view_cnt FROM video_log WHERE id = #{id}
   	</select>
   	
   	<select id="selectVideoList" resultMap="videoMap">
