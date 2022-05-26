@@ -44,4 +44,9 @@ public class WorkoutServiceImpl implements WorkoutService {
 			return false;
 	}
 
+	@Override
+	public void modifyWorkout(Workout workout) {
+		workoutDao.updateWorkout(workout);
+	}
+
 }

@@ -59,12 +59,12 @@ public class WorkoutController {
 		HashMap<String, String> params = new HashMap<String, String>();
 		params.put("id", workout.getId());
 		params.put("regDate", workout.getRegDate());
-		
 		Workout origin = workoutService.selectOne(params);
+		
 		origin.setBurn(workout.getBurn());
 		origin.setCal(workout.getCal());
 		origin.setWorkTime(workout.getWorkTime());
-
+		workoutService.modifyWorkout(origin);
 		return new ResponseEntity<Workout>(origin, HttpStatus.OK);
 	}
 

@@ -36,8 +36,8 @@
 		SET
 		cal = #{cal},
 		burn = #{burn}, 
-		work_time = #{workTime},
-		WHERE reg_date = #{regDate}
+		work_time = #{workTime}
+		WHERE reg_date = #{regDate} AND id = #{id}
 	</update>
 	
 	<delete id="deleteWorkout" parameterType="java.util.HashMap">
