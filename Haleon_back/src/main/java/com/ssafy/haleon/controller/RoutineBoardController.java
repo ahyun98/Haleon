@@ -40,6 +40,11 @@ public class RoutineBoardController {
 			@RequestParam(defaultValue = "") String id,
 			@RequestParam(defaultValue = "") String regDate) {
 
+		int period = boardService.routineCnt(id);
+		Profile profile = profileService.selectOne(id);
+		profile.setPeriod(period);
+		profileService.modifyProfile(profile);
+		
 		HashMap<String, String> params = new HashMap<String, String>();
 		params.put("id", id);
 		params.put("regDate", regDate);
@@ -57,10 +62,7 @@ public class RoutineBoardController {
 		
 		if(curRoutine == null) {
 			boardService.routineWriteBoard(routineBoard);
-			int period = boardService.routineCnt(routineBoard.getId());
-			Profile profile = profileService.selectOne(routineBoard.getId());
-			profile.setPeriod(period);
-			profileService.modifyProfile(profile);
+			
 			return new ResponseEntity<String>("SUCCESS",HttpStatus.OK);
 		}
 		else
