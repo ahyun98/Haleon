@@ -1,4 +1,6 @@
 <template>
+<div>
+
   <div id = "aboutcomp">
         <img  src = "@/assets/carousel/about3.jpg">
         <div class = "about">
@@ -12,6 +14,8 @@
             <br><br><br><br><br><br>
         </div>
   </div>
+
+</div>
 </template>
 
 <script>
@@ -22,7 +26,22 @@ export default {
 </script>
 
 <style scoped>
-
+.profileimg{
+        width: 12vw !important;
+        max-height: 12vw !important;
+        min-height: 12vw !important;
+        object-fit: cover;
+        border-radius: 70%;
+        margin-right: 40px;
+}
+.flex{
+    display: flex;
+    justify-content: space-around;
+}
+.developer{
+    background-color: #131513;
+    color: white;
+}
 #aboutcomp{
     margin: 30px 0px;
     border: 0;

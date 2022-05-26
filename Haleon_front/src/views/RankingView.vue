@@ -12,9 +12,12 @@
         :items="items"
         :per-page="perPage"
         :current-page="currentPage"
-        
-        ></b-table>
-        
+        :fields = "fields"
+        >
+          <template #cell(index)="data">
+            {{ data.index + 1 }}
+          </template>
+        </b-table>
         <b-pagination
         align="center"
         v-model="currentPage"
@@ -35,80 +38,27 @@ export default {
         return {
         perPage: 20,
         currentPage: 1,
+
         items: [
-          { id: 1, first_name: 'Fred', last_name: 'Flintstone' },
-          { id: 2, first_name: 'Wilma', last_name: 'Flintstone' },
-          { id: 3, first_name: 'Barney', last_name: 'Rubble' },
-          { id: 4, first_name: 'Betty', last_name: 'Rubble' },
-          { id: 5, first_name: 'Pebbles', last_name: 'Flintstone' },
-          { id: 6, first_name: 'Bamm Bamm', last_name: 'Rubble' },
-          { id: 7, first_name: 'The Great', last_name: 'Gazzoo' },
-          { id: 8, first_name: 'Rockhead', last_name: 'Slate' },
-          { id: 9, first_name: 'Pearl', last_name: 'Slaghoople' },
-          { id: 1, first_name: 'Fred', last_name: 'Flintstone' },
-          { id: 2, first_name: 'Wilma', last_name: 'Flintstone' },
-          { id: 3, first_name: 'Barney', last_name: 'Rubble' },
-          { id: 4, first_name: 'Betty', last_name: 'Rubble' },
-          { id: 5, first_name: 'Pebbles', last_name: 'Flintstone' },
-          { id: 6, first_name: 'Bamm Bamm', last_name: 'Rubble' },
-          { id: 7, first_name: 'The Great', last_name: 'Gazzoo' },
-          { id: 8, first_name: 'Rockhead', last_name: 'Slate' },
-          { id: 9, first_name: 'Pearl', last_name: 'Slaghoople' },
-          { id: 1, first_name: 'Fred', last_name: 'Flintstone' },
-          { id: 2, first_name: 'Wilma', last_name: 'Flintstone' },
-          { id: 3, first_name: 'Barney', last_name: 'Rubble' },
-          { id: 4, first_name: 'Betty', last_name: 'Rubble' },
-          { id: 5, first_name: 'Pebbles', last_name: 'Flintstone' },
-          { id: 6, first_name: 'Bamm Bamm', last_name: 'Rubble' },
-          { id: 7, first_name: 'The Great', last_name: 'Gazzoo' },
-          { id: 8, first_name: 'Rockhead', last_name: 'Slate' },
-          { id: 9, first_name: 'Pearl', last_name: 'Slaghoople' },
-          { id: 1, first_name: 'Fred', last_name: 'Flintstone' },
-          { id: 2, first_name: 'Wilma', last_name: 'Flintstone' },
-          { id: 3, first_name: 'Barney', last_name: 'Rubble' },
-          { id: 4, first_name: 'Betty', last_name: 'Rubble' },
-          { id: 5, first_name: 'Pebbles', last_name: 'Flintstone' },
-          { id: 6, first_name: 'Bamm Bamm', last_name: 'Rubble' },
-          { id: 7, first_name: 'The Great', last_name: 'Gazzoo' },
-          { id: 8, first_name: 'Rockhead', last_name: 'Slate' },
-          { id: 9, first_name: 'Pearl', last_name: 'Slaghoople' },
-          { id: 1, first_name: 'Fred', last_name: 'Flintstone' },
-          { id: 2, first_name: 'Wilma', last_name: 'Flintstone' },
-          { id: 3, first_name: 'Barney', last_name: 'Rubble' },
-          { id: 4, first_name: 'Betty', last_name: 'Rubble' },
-          { id: 5, first_name: 'Pebbles', last_name: 'Flintstone' },
-          { id: 6, first_name: 'Bamm Bamm', last_name: 'Rubble' },
-          { id: 7, first_name: 'The Great', last_name: 'Gazzoo' },
-          { id: 8, first_name: 'Rockhead', last_name: 'Slate' },
-          { id: 9, first_name: 'Pearl', last_name: 'Slaghoople' },
-          { id: 1, first_name: 'Fred', last_name: 'Flintstone' },
-          { id: 2, first_name: 'Wilma', last_name: 'Flintstone' },
-          { id: 3, first_name: 'Barney', last_name: 'Rubble' },
-          { id: 4, first_name: 'Betty', last_name: 'Rubble' },
-          { id: 5, first_name: 'Pebbles', last_name: 'Flintstone' },
-          { id: 6, first_name: 'Bamm Bamm', last_name: 'Rubble' },
-          { id: 7, first_name: 'The Great', last_name: 'Gazzoo' },
-          { id: 8, first_name: 'Rockhead', last_name: 'Slate' },
-          { id: 9, first_name: 'Pearl', last_name: 'Slaghoople' },
-          { id: 1, first_name: 'Fred', last_name: 'Flintstone' },
-          { id: 2, first_name: 'Wilma', last_name: 'Flintstone' },
-          { id: 3, first_name: 'Barney', last_name: 'Rubble' },
-          { id: 4, first_name: 'Betty', last_name: 'Rubble' },
-          { id: 5, first_name: 'Pebbles', last_name: 'Flintstone' },
-          { id: 6, first_name: 'Bamm Bamm', last_name: 'Rubble' },
-          { id: 7, first_name: 'The Great', last_name: 'Gazzoo' },
-          { id: 8, first_name: 'Rockhead', last_name: 'Slate' },
-          { id: 9, first_name: 'Pearl', last_name: 'Slaghoople' },
-          { id: 1, first_name: 'Fred', last_name: 'Flintstone' },
-          { id: 2, first_name: 'Wilma', last_name: 'Flintstone' },
-          { id: 3, first_name: 'Barney', last_name: 'Rubble' },
-          { id: 4, first_name: 'Betty', last_name: 'Rubble' },
-          { id: 5, first_name: 'Pebbles', last_name: 'Flintstone' },
-          { id: 6, first_name: 'Bamm Bamm', last_name: 'Rubble' },
-          { id: 7, first_name: 'The Great', last_name: 'Gazzoo' },
-          { id: 8, first_name: 'Rockhead', last_name: 'Slate' },
-          { id: 9, first_name: 'Pearl', last_name: 'Slaghoople' },
-        ]
+          {username:"ahyun", period: "13", muscle: '14'},
+          {username:"ahyun", period: "13", muscle: '14'},
+          {username:"ahyun", period: "13", muscle: '14'},
+          {username:"ahyun", period: "13", muscle: '14'},
+          {username:"ahyun", period: "13", muscle: '14'},
+          {username:"ahyun", period: "13", muscle: '14'},
+
+          {username:"ahyun", period: "13", muscle: '14'},
+          {username:"ahyun", period: "13", muscle: '14'},
+          {username:"ahyun", period: "13", muscle: '14'},
+          {username:"ahyun", period: "13", muscle: '14'},
+          {username:"ahyun", period: "13", muscle: '14'},
+          {username:"ahyun", period: "13", muscle: '14'},
+          {username:"ahyun", period: "13", muscle: '14'},
+          {username:"ahyun", period: "13", muscle: '14'},
+
+        ],
+        fields: ['index',
+            'username','period','muscle'],
       }
     },
     computed: {
