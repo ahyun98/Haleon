@@ -23,7 +23,6 @@
 	<update id="updateProfile" parameterType="profile">
 		UPDATE profile_list
 		SET
-		id = #{id},
 		period = #{period},
 		height = #{height},
 		weight = #{weight},
