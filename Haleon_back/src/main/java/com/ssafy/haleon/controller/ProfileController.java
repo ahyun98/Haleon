@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ssafy.haleon.exception.ProfileNotFoundException;
 import com.ssafy.haleon.model.dto.Profile;
+import com.ssafy.haleon.model.dto.RoutineBoard;
 import com.ssafy.haleon.model.dto.User;
 import com.ssafy.haleon.model.service.ProfileService;
+import com.ssafy.haleon.model.service.RoutineBoardService;
 import com.ssafy.haleon.model.service.UserService;
 
 @RestController
@@ -32,6 +34,9 @@ public class ProfileController {
 	@Autowired
 	private UserService userService;
 
+	@Autowired
+	private RoutineBoardService routineBoard;
+	
 	// 프로필 등록
 	@PostMapping("/profile")
 	public ResponseEntity<String> write(Profile profile) {
@@ -43,7 +48,12 @@ public class ProfileController {
 	@GetMapping("/profile/{id}")
 	public ResponseEntity<Profile> read(@PathVariable String id){
 		
-		try {return new ResponseEntity<Profile>(profileService.selectOne(id), HttpStatus.OK);}
+		try {
+			int period = routineBoard.routineCnt(id);
+			Profile profile = profileService.selectOne(id);
+			profile.setPeriod(period);
+			profileService.modifyProfile(profile);
+			return new ResponseEntity<Profile>(profileService.selectOne(id), HttpStatus.OK);}
 		catch(Exception e){
 			throw new ProfileNotFoundException(id +"프로필 없음");
 		}

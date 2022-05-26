@@ -19,7 +19,7 @@
 		profile_list VALUES (#{id}, #{period}, #{height}, #{weight}, #{bmi},
 		#{fatRate}, #{muscleRate})
 	</insert>
-
+	
 	<update id="updateProfile" parameterType="profile">
 		UPDATE profile_list
 		SET
