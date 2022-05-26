@@ -30,7 +30,6 @@ public class ProfileServiceImpl implements ProfileService {
 		Profile originProfile = profileDao.selectOne(profile.getId());
 		originProfile.setBmi(profile.getBmi());
 		originProfile.setHeight(profile.getHeight());
-		originProfile.setPeriod(profile.getPeriod());
 		originProfile.setWeight(profile.getWeight());
 		originProfile.setFatRate(profile.getFatRate());
 		originProfile.setMuscleRate(profile.getMuscleRate());
