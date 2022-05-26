@@ -1,7 +1,8 @@
 <template>
   <div class = "rank">
+    <!--
     <button class = "rankingbtn">Steady</button>
-    <button class = "rankingbtn">Body Muscle</button>
+    <button class = "rankingbtn">Body Muscle</button>-->
   <div class="RankingComp">
     <div class = "title">Top Rated</div>
     <div class="overflow-auto">
@@ -9,12 +10,12 @@
 
         <b-table
         id="my-table"
-        :items="items"
+        :items="userlist"
         :per-page="perPage"
         :current-page="currentPage"
         :fields = "fields"
         >
-          <template #cell(index)="data">
+          <template #cell(ranking)="data">
             {{ data.index + 1 }}
           </template>
         </b-table>
@@ -31,40 +32,27 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 
 
 export default {
     data() {
         return {
-        perPage: 20,
+        perPage: 15,
         currentPage: 1,
 
-        items: [
-          {username:"ahyun", period: "13", muscle: '14'},
-          {username:"ahyun", period: "13", muscle: '14'},
-          {username:"ahyun", period: "13", muscle: '14'},
-          {username:"ahyun", period: "13", muscle: '14'},
-          {username:"ahyun", period: "13", muscle: '14'},
-          {username:"ahyun", period: "13", muscle: '14'},
-
-          {username:"ahyun", period: "13", muscle: '14'},
-          {username:"ahyun", period: "13", muscle: '14'},
-          {username:"ahyun", period: "13", muscle: '14'},
-          {username:"ahyun", period: "13", muscle: '14'},
-          {username:"ahyun", period: "13", muscle: '14'},
-          {username:"ahyun", period: "13", muscle: '14'},
-          {username:"ahyun", period: "13", muscle: '14'},
-          {username:"ahyun", period: "13", muscle: '14'},
-
-        ],
-        fields: ['index',
-            'username','period','muscle'],
+        fields: ['Ranking',
+            {key:"id", label:'ID'},{key:"period", label:'Period'}],
       }
     },
+    
     computed: {
       rows() {
-        return this.items.length
-      }
+        return this.userlist.length
+      },
+      ...mapState([
+        "userlist"
+      ])
     },
     components: {
         
@@ -72,6 +60,9 @@ export default {
     methods:{
 
 
+    },
+    created(){
+      this.$store.dispatch("getUserlist")
     }
 }
 
@@ -90,11 +81,12 @@ export default {
     .RankingComp{
 
         background-color: #131515;
-        height : 2000px;
+        height : auto;
+        min-height: 95vh;
     }
     .overflow-auto{
         color: white !important;
-        padding: 2% 10%;
+        padding: 0% 10%;
     }
 
     .page-link{

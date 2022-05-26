@@ -14,6 +14,7 @@ import ExerciseListView from '@/views/ExerciseListView.vue'
 import ExerciseDetailView from '@/views/ExerciseDetailView.vue'
 import ProfileEditView from '@/views/ProfileEditView.vue'
 import WorkoutEditView from '@/views/WorkoutEditView.vue'
+import VideoDetailView from '@/views/VideoDetailView.vue'
 
 
 
@@ -104,6 +105,11 @@ const routes = [
     path: '/workoutEdit',
     name : 'workoutEdit',
     component : WorkoutEditView,
+  },
+  {
+    path: '/videoDetail/:videoId',
+    name: 'videoDetail',
+    component: VideoDetailView
   }
 ]
 

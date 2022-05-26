@@ -7,7 +7,7 @@ import router from '@/router'
 Vue.use(Vuex)
 // AIzaSyDyfOh2BxGL0ynInW3c-LyCltAVLY3y_dA
 //AIzaSyAmCuG3yHJYja58BIGE0gXNWmPUb-FJaqY
-const YOUTUBE_API_KEY = 'AIzaSyAmCuG3yHJYja58BIGE0gXNWmPUb-FJaqY'
+const YOUTUBE_API_KEY = 'AIzaSyDyfOh2BxGL0ynInW3c-LyCltAVLY3y_dA'
 const YOUTUBE_API_URL = 'https://www.googleapis.com/youtube/v3/search'
 
 const REST_API = 'http://localhost:8888/api'
@@ -25,6 +25,9 @@ export default new Vuex.Store({
     exercises:[],
     ischeck:false,
     is_Exercise:[],
+    user:{},
+    videolog: [],
+    userlist:[],
   },
   getters: {
   },
@@ -64,6 +67,15 @@ export default new Vuex.Store({
     },
     IS_EXERCISE(state,payload){
       state.is_Exercise.push(payload)
+    },
+    GET_USER(state,payload){
+      state.user = payload
+    },
+    GET_VIDEOLOG(state,payload){
+      state.videolog = payload
+    },
+    GET_USERLIST(state,payload){
+      state.userlist = payload
     }    
   },
   actions: {
@@ -230,13 +242,30 @@ export default new Vuex.Store({
       })
     },
     addWorkout({commit},payload){
+      
       commit
       const API_URL = `${REST_API}/workout`;
+      const data = {
+        id: payload.id,
+        regDate: payload.regDate,
+      }
       axios({
         url : API_URL,
-        method: 'POST',
-        params : payload
-      }).then(()=>{
+        method: 'GET',
+        params: data,
+      }).then((res)=>{
+        console.log(res.data)
+        if(!res.data){
+          axios({
+            url : API_URL,
+            method: 'POST',
+            params : payload
+          }).then(()=>{
+          }).catch((err)=>{
+            console.log(err)
+          })
+        }
+        console.log("이미 있어")
       }).catch((err)=>{
         console.log(err)
       })
@@ -330,6 +359,80 @@ export default new Vuex.Store({
         })
       }
     },
+    workoutEdit({commit}, payload){
+      commit
+      const API_URL = `${REST_API}/workout`
+      axios({
+        url : API_URL,
+        method: 'PUT',
+        params: payload
+      }).then(()=>{
+        console.log("수정 성공")
+        router.push("/workout")
+      }).catch((err)=>{
+        console.log(err);
+      })
+    },
+    profileEdit({commit}, payload){
+      commit
+      const API_URL = `${REST_API}/profile`
+      axios({
+        url : API_URL,
+        method: 'PUT',
+        params: payload
+      }).then(()=>{
+        console.log("수정 성공")
+        router.push("/workout")
+      }).catch((err)=>{
+        console.log(err);
+      })
+    },
+    getUser({commit}, payload){
+      const API_URL = `${REST_API}/user/${payload}`
+      axios({
+        url : API_URL,
+        method: 'GET',
+      }).then((res)=>{
+        commit("GET_USER",res.data)
+      }).catch((err)=>{
+        console.log(err);
+      })
+    },
+    addVideolog({commit}, payload){
+      commit
+      const API_URL = `${REST_API}/insertLog`
+      axios({
+        url : API_URL,
+        method: 'POST',
+        params: payload
+      }).then(()=>{
+        console.log("성공")
+      }).catch((err)=>{
+        console.log(err);
+      })
+    },
+    getVideolog({commit}, id){
+      const API_URL = `${REST_API}/userVideoLog/${id}`
+      axios({
+        url : API_URL,
+        method: 'GET',
+      }).then((res)=>{
+        commit("GET_VIDEOLOG",res.data)
+      }).catch((err)=>{
+        console.log(err);
+      })
+    },
+    getUserlist({commit}){
+      const API_URL= `${REST_API}/profileListPeriod`
+      axios({
+        url : API_URL,
+        method: 'GET',
+      }).then((res)=>{
+        commit("GET_USERLIST",res.data)
+      }).catch((err)=>{
+        console.log(err);
+      })
+    }
 
   },
   modules: {

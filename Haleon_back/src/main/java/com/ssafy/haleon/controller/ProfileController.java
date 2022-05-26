@@ -50,9 +50,14 @@ public class ProfileController {
 		
 		try {
 			int period = routineBoard.routineCnt(id);
+			System.out.println(period);
 			Profile profile = profileService.selectOne(id);
+			System.out.println(profile);
 			profile.setPeriod(period);
+			System.out.println(profile);
 			profileService.modifyProfile(profile);
+			profile = profileService.selectOne(id);
+			System.out.println(profile);
 			return new ResponseEntity<Profile>(profileService.selectOne(id), HttpStatus.OK);}
 		catch(Exception e){
 			throw new ProfileNotFoundException(id +"프로필 없음");

@@ -9,7 +9,7 @@
             <div class = "profile_2" style = "padding-top:60px; margin-bottom:40px;">
                 <div style = "display: flex; justify-content:space-around; align-items:center;">
                     <p style = "font-size : 15px;">총 운동 시간</p>
-                    <p style = "font-size : 20px;">{{workout.workTime}}</p>
+                    <p style = "font-size : 20px;">{{workHour}}시간 {{workMinute}}분</p>
                     <div>
                         <p>섭취 Calories</p>
                         <p>Burn Calories</p>
@@ -106,6 +106,12 @@
 <script>
 import { mapState } from 'vuex'
 export default {
+    data(){
+        return{
+            workHour:"",
+            workMinute:"",
+        }
+    },
     computed: {
       ...mapState([
           'exercise',
@@ -118,8 +124,11 @@ export default {
         }
     },
     created(){
-
-    }
+    },
+    updated(){
+        this.workHour = parseInt(this.workout.workTime / 60);
+        this.workMinute = this.workout.workTime-this.workHour*60;
+    },
 }
 </script>
 

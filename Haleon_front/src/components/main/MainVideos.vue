@@ -5,7 +5,15 @@
       <div class = "movie" v-for="(video,index) in videos" :key = index>
           <iframe style = "width : 80%; height: 80%" :src = "`https://www.youtube.com/embed/${video.id.videoId}`" frameborder=0></iframe>
             <div class = "movieinfo">
-                {{video.snippet.title}}
+                <div style = "height: 45px; overflow:hidden; margin-top: 8px;">
+                    <router-link :to="`/videoDetail/${video.id.videoId}`" class = "link">
+                        {{video.snippet.title}}
+                    </router-link>
+                </div>
+                <div style = "margin-top:5px; font-size:13px;">
+                {{video.snippet.channelTitle}}
+
+                </div>
             </div>
       </div>
   </div>
@@ -24,11 +32,13 @@ export default {
   created(){
     this.$store.dispatch('getVideos')
   },
+  methods:{
+  }
 }
 </script>
 
 <style scoped>
-    @import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144&display=swap');
+    
     *{
         font-family: 'Roboto Flex', sans-serif;
     }
@@ -55,12 +65,15 @@ export default {
         height : 40%;
         background-color: #131515;
         color: white;
-        text-align: center;
         flex-direction: column;
         align-items: center;
     }
     .movieinfo{
         margin-top: 1%;
         width: 70%;
+    }
+    .link{
+        text-decoration-color: #7DE2D1;
+        color: white;
     }
 </style>

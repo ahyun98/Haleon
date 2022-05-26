@@ -28,6 +28,7 @@ public class ProfileServiceImpl implements ProfileService {
 	@Override
 	public void modifyProfile(Profile profile) {
 		Profile originProfile = profileDao.selectOne(profile.getId());
+		originProfile.setPeriod(profile.getPeriod());
 		originProfile.setBmi(profile.getBmi());
 		originProfile.setHeight(profile.getHeight());
 		originProfile.setWeight(profile.getWeight());

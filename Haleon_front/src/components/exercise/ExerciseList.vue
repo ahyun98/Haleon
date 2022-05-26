@@ -130,7 +130,7 @@ export default {
         font-family: 'Roboto Flex', sans-serif !important;
         background-color: #131515;
         height : auto;
-        min-height: 45vh;
+        min-height: 60vh;
     }
     th{
         background-color: #00b99a;

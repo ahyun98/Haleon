@@ -16,7 +16,14 @@
                 <div class = "movie" v-for="(video,index) in videos" :key = index>
                     <iframe style = "width : 80%; height: 80%" :src = "`https://www.youtube.com/embed/${video.id.videoId}`" frameborder=0></iframe>
                         <div class = "movieinfo">
-                            {{video.snippet.title}}
+                            <div style = "height: 45px; overflow:hidden; margin-top: 8px;">
+                                <router-link :to="`/videoDetail/${video.id.videoId}`" class = "link">
+                                    {{video.snippet.title}}
+                                </router-link>
+                            </div>
+                            <div style = "margin-top:5px; font-size:13px;">
+                            {{video.snippet.channelTitle}}
+                            </div>
                         </div>
                 </div>
             </div>
@@ -106,5 +113,9 @@ export default {
     .movieinfo{
         margin-top: 1%;
         width: 70%;
+    }
+    .link{
+        text-decoration-color: #7DE2D1;
+        color: white;
     }
 </style>

@@ -9,12 +9,13 @@
                 <img v-show="is_Exercise[index]" class = "check" src = "@/assets/check.png">
             </div>
         </div>
-        <div style = "text-align:right; right:10vw; margin-bottom:10px">지금까지 {{}}일 운동 중!</div>
+        <div style = "text-align:right; right:10vw; margin-bottom:10px">지금까지 {{profile.period}}일 운동 중!</div>
         <div class = "profile" style = "padding-top: 100px; padding-bottom: 100px;">
             <div class = "profile_1">
-                <img class = "profileimg" src="@/assets/woman.png" alt="">
+                <img v-show="user.gender=='woman'" class = "profileimg" src="@/assets/woman.png" alt="">
+                <img v-show="user.gender=='man'" class = "profileimg" src="@/assets/man.png" alt="">
                 <div class = "profilename">
-                    <span style = "font-size:35px; font-weight:bold;">{{profile.id}}님</span><span style = "text-align:end;">{{profile.age}}</span><br><br>
+                    <span style = "font-size:35px; font-weight:bold;">{{user.username}}님</span><span style = "text-align:end;">{{profile.age}}</span><br><br>
                     <div>{{profile.height}}cm  / {{profile.weight}}kg</div>
                 </div>
                 <div >
@@ -24,15 +25,14 @@
                 </div>
                 <div>
                     <button class = "routineAddbtn">Routine 생성</button><br><br>
-                    <button class = "routineAddbtn">+ edit</button>
+                    <button class = "routineAddbtn" @click="profileEditForm">+ edit</button>
                 </div>
             </div>
-
             <div class = "profile_2" style = "padding-top:60px;">
                 <h2 style = "padding-right:65vw;">Today's Workout</h2>
                 <div style = "display: flex; justify-content:space-between; align-items:center;">
                     <p style = "font-size : 30px;">총 운동 시간</p>
-                    <p style = "font-size : 20px;">{{workout.workTime}}</p>
+                    <p style = "font-size : 20px;">{{workHour}}시간 {{workMinute}}분</p>
                     <div>
                         <p>섭취 Calories</p>
                         <p>Burn Calories</p>
@@ -43,7 +43,7 @@
                     </div>
                     <div>
                         <button class = "routineAddbtn" >+ Routine</button><br><br>
-                        <button class = "routineAddbtn">+ edit</button>
+                        <button class = "routineAddbtn" @click="workoutEditForm">+ edit</button>
                     </div>
                 </div>
             </div>
@@ -514,19 +514,22 @@
 
 
             <div class = "profile_5" style = "padding-top:60px">
-                <h2 style = "padding-right:71.5vw">Watch</h2>
-                <div>
+                <h2 style = "padding-right:71.5vw">Watch</h2> 
+                <div style = "display:flex; justify-content: space-around;">
 
+                    <div class = "movie" v-for="(video,index) in videolog" :key = index>
+                    <iframe style = "width : 250px;" :src = "`https://www.youtube.com/embed/${video.videoId}`" frameborder=0></iframe>
+                    </div>
                 </div>
             </div>
             <div class = "profile_6" style = "padding-top:60px">
                 <button class = "routineAddbtn" @click="getExercises">일지 조회</button><br><br>
-
+            </div>
             </div>
         </div>
       </div>
-      </div>
-  </div>
+    </div>
+
 </template>
 
 <script>
@@ -603,6 +606,8 @@ export default {
                 { value: 5, text: '5 Set' },
             ],
             dates:dates,
+            workHour:"",
+            workMinute:"",
         }
     },
     computed: {
@@ -611,6 +616,8 @@ export default {
             "workout",
             "exercise",
             "is_Exercise",
+            "user",
+            "videolog"
         ])
     },
     created(){
@@ -629,6 +636,8 @@ export default {
             };
             this.$store.dispatch('isExercise',data);
         }
+        this.$store.dispatch("getUser",id);
+        this.$store.dispatch("getVideolog",id)
     },
     mounted(){
         const id = sessionStorage.getItem("id");
@@ -639,6 +648,10 @@ export default {
 
         this.$store.dispatch("addWorkout",workout)
 
+    },
+    updated(){
+        this.workHour = parseInt(this.workout.workTime / 60);
+        this.workMinute = this.workout.workTime-this.workHour*60;
     },
     methods:{
         addExercise(){
@@ -690,17 +703,31 @@ export default {
                 abs7 : this.abs7,
             }
             this.$store.dispatch("addExercise",payload)
+            for (let i = 0; i < this.dates.length; i++) {
+            let data1 = {
+                id : id,
+                regDate : this.dates[i],
+            };
+            this.$store.dispatch('isExercise',data1);
             let data = {
             id : id,
             regDate : this.date,
             }
             this.$store.dispatch('getExercise',data);
+            console.log(this.is_Exercise)
+        }
         },
         addform(){
             this.isAdd=!this.isAdd;
         },
         getExercises(){
             this.$router.push("/exerciselist")
+        },
+        workoutEditForm(){
+            this.$router.push("/workoutEdit")
+        },
+        profileEditForm(){
+            this.$router.push("/profileEdit")
         }
     }
 
@@ -777,5 +804,6 @@ p{
     .custom-control{
         font-size: 20px;
         margin: 3px;
+        
     }
 </style>
