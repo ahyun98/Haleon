@@ -9,13 +9,13 @@
     max-height = "504px"
   >
     <b-carousel-slide
-      img-src="https://i.ibb.co/FDdw0bV/silhouette-gb2fea85e7-1920.jpg"
+      :img-src="carousel3"
     ><h1 style="vertical-align:center;">HALEON</h1></b-carousel-slide>
     <b-carousel-slide
-      img-src="https://i.ibb.co/NVrT7xF/training-g45b3e96f1-1920.jpg"
+      :img-src="carousel2"
     ><h1 style="vertical-align:center;">HALEON</h1></b-carousel-slide>
     <b-carousel-slide
-      img-src="https://i.ibb.co/wh21gnz/jogging-g6279ec27f-1920.jpg "
+      :img-src="carousel1"
     >   <h1 style="vertical-align:center;">HALEON</h1>
     </b-carousel-slide>
     </b-carousel>
@@ -24,12 +24,16 @@
 </template>
 
 <script>
+  
   export default {
     name : 'MainCarousel',
     data() {
       return {
         //slide: 0,
-        sliding: null
+        sliding: null,
+        carousel1:require("@/assets/carousel/carousel1.jpg"),
+        carousel2:require("@/assets/carousel/carousel2.jpg"),
+        carousel3:require("@/assets/carousel/carousel3.jpg"),
       }
     },
     methods: {

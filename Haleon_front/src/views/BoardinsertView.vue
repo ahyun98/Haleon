@@ -7,30 +7,52 @@
       </div>
       <div class = "insertinput">
       <div>
-      제목 : <input class = "titlef" type = "text" v-model="title">
+      <span>제목 : </span><input class = "titlef" type = "text" v-model="title">
           </div>
           <div>
-      카테고리 : <select class = "category" name="fruit">
-        <option value="바나나">바나나</option>
-        <option value="사과">사과</option>
-        <option value="파인애플" selected="selected">파인애플</option>
+      <span>카테고리 : </span><select class = "category" name="category" v-model="category">
+        <option disabled value="">--Category--</option>
+        <option value="자유">자유</option>
+        <option value="Routine 공유">Routine 공유</option>
+        <option value="Tip 공유" selected="selected">Tip 공유</option>
         </select>
               </div>    
       </div>
       <textarea class = "content" v-model="content" placeholder="내용을 입력하세요"></textarea>
-      <button class = "insertbtn" @click="insertform">글쓰기</button>
+      <button class = "insertbtn" @click="createBoard">등록</button>
   </div>
 </div>
 </template>
 
 <script>
 export default {
-    name: "BoardinsertView"
+    name: "BoardinsertView",
+    data(){
+        return{
+            title:"",
+            category:"",
+            content:"",
+            writer:""
+        }
+    },
+    methods:{
+        createBoard(){
+            const id = sessionStorage.getItem("id");
+            let newBoard = {
+                category : this.category,
+                title : this.title,
+                writer : id,
+                content : this.content,
+            }
+            this.$store.dispatch('createBoard', newBoard);
+        }
+    }
 }
 </script>
 
 <style scoped>
 .insertform{
+    padding-top:40px;
     margin-left: 10vw;
     width: 80vw;
     height: 82vh;
@@ -56,7 +78,8 @@ hr{
     width: 100%;
     height: 70%;
     background-color: #131515;
-    border: 1px solid #7DE2D1
+    border: 1px solid #7DE2D1;
+    color: white;
 }
 .insertbtn{
     width: 5%;
@@ -78,5 +101,12 @@ hr{
     background-color: #131515;
     color: white;
     border: 1px solid #7DE2D1
+}
+.category{
+    background-color: #131515;
+    color: white;
+}
+span{
+    padding: 0px 30px 0px 0px;
 }
 </style>

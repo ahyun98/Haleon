@@ -7,6 +7,17 @@ import LoginView from '@/views/LoginView.vue'
 import JoinView from '@/views/JoinView.vue'
 import MapView from '@/views/MapView.vue'
 import BoardinsertView from '@/views/BoardinsertView.vue'
+import BoardDetailView from '@/views/BoardDetailView.vue'
+import UserProfileView from '@/views/UserProfileView.vue'
+import VideosView from '@/views/VideosView.vue'
+import ExerciseListView from '@/views/ExerciseListView.vue'
+import ExerciseDetailView from '@/views/ExerciseDetailView.vue'
+import ProfileEditView from '@/views/ProfileEditView.vue'
+import WorkoutEditView from '@/views/WorkoutEditView.vue'
+
+
+
+
 
 
 
@@ -58,6 +69,41 @@ const routes = [
     path: '/boardinsert',
     name: 'boardinsert',
     component: BoardinsertView
+  },
+  {
+    path: '/boarddetail',
+    name : 'boarddetail',
+    component: BoardDetailView
+  },
+  {
+    path : '/workout',
+    name : 'workout',
+    component : UserProfileView
+  },
+  {
+    path : '/videos',
+    name : 'videos',
+    component : VideosView
+  },
+  {
+    path : '/exerciselist',
+    name : 'exerciselist',
+    component : ExerciseListView,
+  },
+  {
+    path : '/exercisedetail',
+    name : 'exercisedetail',
+    component : ExerciseDetailView,
+  },
+  {
+    path: '/profileEdit',
+    name : 'profileEdit',
+    component : ProfileEditView,
+  },
+  {
+    path: '/workoutEdit',
+    name : 'workoutEdit',
+    component : WorkoutEditView,
   }
 ]
 

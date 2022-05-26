@@ -20,13 +20,24 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 export default {
     name : "UserLogin",
     data(){
         return{
-            id : "",
-            pw : "",
+            id : this.profile.id,
+            period : this.profile.period,
+            height : this.profile.height,
+            weight : this.profile.weight,
+            bmi : this.profile.bmi,
+            fat_rate : this.profile.fat_rate,
+            muscle_rate : this.profile.muscle_rate,
         }
+    },
+    computed:{
+        ...mapState([
+            "profile"
+        ])
     },
     methods:{
         Login(){
@@ -40,6 +51,10 @@ export default {
             }
             this.$store.dispatch('userLogin', user)
         }
+    },
+    create(){
+        const id = sessionStorage.getItem("id");
+        this.$store.dispatch('getProfile',id);
     }
 }
 </script>
