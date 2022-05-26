@@ -39,5 +39,19 @@
 		SELECT id, period, height, weight, bmi, fat_rate,
 		muscle_rate FROM profile_list WHERE id = #{id}
 	</select>
+	
+	<select id="selectList" resultMap="profileMap">
+		SELECT id, period, height, weight, bmi, fat_rate,
+		muscle_rate FROM profile_list
+	</select>
 
+	<select id="selectListPeriod" resultMap="profileMap">
+		SELECT id, period, height, weight, bmi, fat_rate,
+		muscle_rate FROM profile_list ORDER BY period DESC
+	</select>
+	
+	<select id="selectListMuscle" resultMap="profileMap">
+		SELECT id, period, height, weight, bmi, fat_rate,
+		muscle_rate FROM profile_list ORDER BY muscle_rate DESC
+	</select>
 </mapper>

@@ -1,5 +1,7 @@
 package com.ssafy.haleon.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -46,7 +48,23 @@ public class ProfileController {
 			throw new ProfileNotFoundException(id +"프로필 없음");
 		}
 	}
-
+	
+	//모든 유저의 프로필 가져오기
+	@GetMapping("/profileList")
+	public ResponseEntity<List<Profile>> profileList(){
+		return new ResponseEntity<List<Profile>>(profileService.selectList(), HttpStatus.OK);
+	}
+	//모든 유저의 프로필 가져오기 출석도 순으로
+	@GetMapping("/profileListPeriod")
+	public ResponseEntity<List<Profile>> profileListPeriod(){
+		return new ResponseEntity<List<Profile>>(profileService.selectListPeriod(), HttpStatus.OK);
+	}
+	//모든 유저의 프로필 가져오기 근육량 순으로
+	@GetMapping("/profileListMuscle")
+	public ResponseEntity<List<Profile>> profileListMuscle(){
+		return new ResponseEntity<List<Profile>>(profileService.selectListMuscle(), HttpStatus.OK);
+	}
+	
 	// 프로필 수정
 	@PutMapping("/profile")
 	public ResponseEntity<String> modify(Profile profile) {
